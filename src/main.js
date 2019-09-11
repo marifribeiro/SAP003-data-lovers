@@ -1,8 +1,9 @@
-let filter = document.getElementById("filter");
+//let filter = document.getElementById("filter");
 let button = document.getElementById("button");
+let main = document.getElementById("main");
 
-function callFilter () {
-  window.example(+filter.value);
+function callPrintName() {
+  window.printName(main);
 }
 
-button.addEventListener("click", callFilter);
+button.addEventListener("click", callPrintName);
