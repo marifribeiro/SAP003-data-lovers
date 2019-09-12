@@ -4,7 +4,9 @@
 const printName = (parentElement) => {
   RICKANDMORTY.results.map(value => {
 
-    let info = [value.name, value.status, value.origin.name, value.location.name];
+    let info = [`<span>Status: </span>${value.status}`, 
+    `<span>Origin: </span>${value.origin.name}`, 
+    `<span>Last Location: </span>${value.location.name}`];
 
     const card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -12,8 +14,14 @@ const printName = (parentElement) => {
     let linkImg = value.image;
     const img = document.createElement("img");
     img.setAttribute("class", "card-img");
-    img.src = //linkImg
+    img.src = "img/summer.jpeg";
     card.append(img);
+
+    let linkName = value.name
+    const name = document.createElement("li");
+    name.setAttribute("class", "card-name");
+    name.innerHTML = linkName;
+    card.append(name);
 
     info.map(item => {
       const list = document.createElement("li");
