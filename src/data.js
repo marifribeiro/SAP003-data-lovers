@@ -12,7 +12,7 @@ const printName = (parentElement) => {
     let linkImg = value.image;
     const img = document.createElement("img");
     img.setAttribute("class", "card-img");
-    img.src = linkImg;
+    img.src = //linkImg
     card.append(img);
 
     info.map(item => {
