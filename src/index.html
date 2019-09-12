@@ -4,8 +4,34 @@
     <meta charset="utf-8">
     <title>Data Lovers</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
+    
+    <nav id="navbar" class="navbar">
+      <span class="navbar-links lato">
+        <a href="index.html">Home</a>
+        <select id="status" class="lato">
+          <option value="default" selected disabled>Status</option>
+          <option value="dead">Dead</option>
+          <option value="alive">Alive</option>
+          <option value="unknown">Unknown</option>
+        </select>
+        <select id="origin" class="lato">
+          <option value="default" selected disabled>Origin</option>
+          <option value="c-137">C-137</option>
+        </select>
+        <select id="location" class="lato">
+            <option value="default" selected disabled>Location</option>
+            <option value="c-137">C-137</option>
+          </select>
+      </span>
+      <span class="navbar-search lato">
+        <input type="text" placeholder="Search..." class="search-input lato">
+        <button class="search-btn lato">Search</button>
+      </span>
+    </nav>
+
     <div id="root">
       
       <div id="main"></div>
