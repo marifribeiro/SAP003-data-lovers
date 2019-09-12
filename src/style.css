@@ -1,12 +1,46 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+#main{
+    text-align: center;
+}
 .card{
     display: inline-block;
     width: 240px;
-    height: 420px;
+    height: 430px;
     background-color: black;
     color: white;
     margin: 10px;
+    padding: 20px;
+    overflow: auto;
+    border-radius: 20px;
+    
+}
+.card-img{
+    width: 100%;
+    border-radius: 10px;
+}
+.card-name{
+    list-style-type: none;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
     padding: 10px;
+    color: #CBD95F;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #9eb486;
 }
 .card-info{
     list-style-type: none;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    font-size: 14px;
+    text-align: right;
+    height: 45px;
+}
+.card-info span{
+    text-align: left;
+    color: #CBD95F;
+    float: left;
 }
