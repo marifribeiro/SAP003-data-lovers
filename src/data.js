@@ -1,37 +1,22 @@
-// esta é uma função de exemplo
-// veja como agregamos a função ao objeto global window
+const getData = (arr) => {
 
-const printName = (parentElement) => {
-  RICKANDMORTY.results.map(value => {
+  const data = [];
 
-    let info = [`<span>Status: </span>${value.status}`, 
-    `<span>Origin: </span>${value.origin.name}`, 
-    `<span>Last Location: </span>${value.location.name}`];
+  arr.map(value => {
 
-    const card = document.createElement("div");
-    card.setAttribute("class", "card");
+    const obj = {
+      img: value.image,
+      name: value.name,
+      info: [`<span>Status: </span>${value.status}`, 
+      `<span>Origin: </span>${value.origin.name}`, 
+      `<span>Last Location: </span>${value.location.name}`]
+    }
+    
+    data.push(obj);
 
-    let linkImg = value.image;
-    const img = document.createElement("img");
-    img.setAttribute("class", "card-img");
-    img.src = "img/summer.jpeg";
-    card.append(img);
-
-    let linkName = value.name
-    const name = document.createElement("li");
-    name.setAttribute("class", "card-name");
-    name.innerHTML = linkName;
-    card.append(name);
-
-    info.map(item => {
-      const list = document.createElement("li");
-      list.setAttribute("class", "card-info");
-      list.innerHTML = item;
-      card.append(list);
-    });
-
-    parentElement.append(card);
   });
+
+  return data;
 };
 
-window.printName = printName;
+window.getData = getData;
