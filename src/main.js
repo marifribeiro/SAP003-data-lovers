@@ -1,5 +1,6 @@
 const main = document.getElementById("main");
-const cardInfo = window.getData(RICKANDMORTY.results);
+const data = window.getData(RICKANDMORTY.results);
+const dropdownOrigin = document.getElementById("origin");
 
 const createCard = () => {
   const card = document.createElement("div");
@@ -21,27 +22,44 @@ const createName = obj => {
   return name;
 };
 
-const createDetails = arr => {
-  return arr.map(item => {
-    const li = document.createElement("li");
-    li.setAttribute("class", "card-info");
-    li.innerHTML = item;
-    return li;
-  });
+const createDetails = obj => {
+  const ul = document.createElement("ul");
+  ul.setAttribute("class", "card-info");
+  ul.innerHTML += `<li><span>Status</span>${obj.status}</li>`;
+  ul.innerHTML += `<li><span>Origin</span>${obj.origin}</li>`;
+  ul.innerHTML += `<li><span>Location</span>${obj.location}</li>`;
+  return ul;
 };
 
-const printCard = (obj, parentElement) => {
-  return obj.map(item => {
+const printCard = (arr, parentElement) => {
+  return arr.map(item => {
     const card = createCard();
     card.append(createProfileImage(item));
     card.append(createName(item));
-    const details = createDetails(item.details);
-    details.forEach(element => {
-      card.append(element);
-    });
+    card.append(createDetails(item));
 
     parentElement.append(card);
   });
 };
 
-printCard(cardInfo, main);
+const filterOrigin = arr => {
+  const originLocations = [];
+  arr.map(item => {
+    if (!originLocations.includes(item.origin)) {
+      originLocations.push(item.origin);
+    } else {
+      return false;
+    }
+  });
+  return originLocations;
+};
+
+const createOriginList = (parentElement) => {
+  const option = document.createElement("option");
+  option.innerHTML = "worked!";
+  option.value = "worked";
+  parentElement.append(option);
+};
+
+printCard(data, main);
+console.log(filterOrigin(data));
