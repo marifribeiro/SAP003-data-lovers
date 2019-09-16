@@ -9,32 +9,35 @@
   <body>
     
     <nav id="navbar" class="navbar">
-      <span class="navbar-links lato">
+      <span class="navbar-links navbar-font">
         <a href="index.html">Home</a>
-        <select id="status" class="lato">
+        <select id="status" class="navbar-font">
           <option value="default" selected disabled>Status</option>
           <option value="dead">Dead</option>
           <option value="alive">Alive</option>
           <option value="unknown">Unknown</option>
         </select>
-        <select id="origin" class="lato">
+        <select id="origin" class="navbar-font">
           <option value="default" selected disabled>Origin</option>
           <option value="Abadango">Abadango</option>
           <option value="Alien Day Spa">Alien Day Spa</option>
           <option value="Alphabetrium">Alphabetrium</option>
         </select>
-        <select id="location" class="lato">
+        <select id="location" class="navbar-font">
             <option value="default" selected disabled>Location</option>
             <option value="c-137">C-137</option>
           </select>
       </span>
-      <span class="navbar-search lato">
-        <input type="text" placeholder="Search..." class="search-input lato">
-        <button class="search-btn lato">Search</button>
+      <span class="navbar-search navbar-font">
+        <input type="text" placeholder="Search..." class="search-input navbar-font">
+        <button class="search-btn navbar-font">Search</button>
       </span>
     </nav>
 
     <div id="root">
+
+      <div id="title" class="title">THE RICK AND MORTY DATABASE</div>
+      <div id="filter"></div>
       
       <div id="main"></div>
 

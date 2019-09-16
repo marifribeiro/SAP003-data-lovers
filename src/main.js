@@ -1,5 +1,5 @@
 const main = document.getElementById("main");
-const cardInfo = getData(RICKANDMORTY.results);
+const cardInfo = window.getData(RICKANDMORTY.results);
 
 const createCard = () => {
   const card = document.createElement("div");
@@ -10,14 +10,14 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = obj.image; //"img/summer.jpeg"
+  img.src = "img/summer.jpeg"; //obj.image; 
   return img;
 };
 
 const createName = obj => {
-  const name = document.createElement("li");
+  const name = document.createElement("div");
   name.setAttribute("class", "card-name");
-  name.innerHTML = obj.name;
+  name.innerHTML = obj.name.toUpperCase();
   return name;
 };
 
@@ -35,7 +35,6 @@ const printCard = (obj, parentElement) => {
     const card = createCard();
     card.append(createProfileImage(item));
     card.append(createName(item));
-
     const details = createDetails(item.details);
     details.forEach(element => {
       card.append(element);
@@ -44,5 +43,9 @@ const printCard = (obj, parentElement) => {
     parentElement.append(card);
   });
 };
+
+const createSelectList = () => {
+
+}
 
 printCard(cardInfo, main);
