@@ -44,8 +44,4 @@ const printCard = (obj, parentElement) => {
   });
 };
 
-const createSelectList = () => {
-
-}
-
 printCard(cardInfo, main);
