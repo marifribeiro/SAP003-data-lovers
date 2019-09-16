@@ -1,33 +1,51 @@
 const main = document.getElementById("main");
+const cardInfo = window.getData(RICKANDMORTY.results);
 
-const arr = getData(RICKANDMORTY.results);
+const createCard = () => {
+  const card = document.createElement("div");
+  card.setAttribute("class", "card");
+  return card;
+};
+
+const createProfileImage = obj => {
+  const img = document.createElement("img");
+  img.setAttribute("class", "card-img");
+  img.src = "img/summer.jpeg"; //obj.image; 
+  return img;
+};
+
+const createName = obj => {
+  const name = document.createElement("div");
+  name.setAttribute("class", "card-name");
+  name.innerHTML = obj.name.toUpperCase();
+  return name;
+};
+
+const createDetails = arr => {
+  return arr.map(item => {
+    const li = document.createElement("li");
+    li.setAttribute("class", "card-info");
+    li.innerHTML = item;
+    return li;
+  });
+};
 
 const printCard = (obj, parentElement) => {
-    // CRIA A DIV CARTÃO
-    const card = document.createElement("div");
-    card.setAttribute("class", "card");
-
-    // CRIA A TAG IMG E ANEXA ELA NO CARTÃO
-    const img = document.createElement("img");
-    img.setAttribute("class", "card-img");
-    img.src = "img/summer.jpeg" //obj.img;
-    card.append(img);
-
-    // CRIA A TAG LI DO NOME E ANEXA ELA NO CARTÃO
-    const name = document.createElement("li");
-    name.setAttribute("class", "card-name");
-    name.innerHTML = obj.name;
-    card.append(name);
-
-    // CRIA AS DEMAIS LI'S E ADICIONA ELAS NO CARTÃO
-    obj.info.map(item => {
-      const list = document.createElement("li");
-      list.setAttribute("class", "card-info");
-      list.innerHTML = item;
-      card.append(list);
+  return obj.map(item => {
+    const card = createCard();
+    card.append(createProfileImage(item));
+    card.append(createName(item));
+    const details = createDetails(item.details);
+    details.forEach(element => {
+      card.append(element);
     });
 
     parentElement.append(card);
+  });
 };
 
-arr.map(obj => printCard(obj, main));
+const createSelectList = () => {
+
+}
+
+printCard(cardInfo, main);
