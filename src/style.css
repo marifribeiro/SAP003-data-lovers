@@ -111,6 +111,11 @@ html,body{
     font-size: 14px;
     text-align: right;
     height: 45px;
+    padding: 0;
+}
+
+.card-info li {
+    line-height: 27px;
 }
 
 .card-info span{
@@ -118,4 +123,5 @@ html,body{
     text-align: left;
     color: #e9ffd4;
     float: left;
+    margin-right: 20px;
 }

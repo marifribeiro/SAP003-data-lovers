@@ -6,7 +6,6 @@
   "scripts": {
     "htmlhint": "htmlhint src/*.html test/*.html",
     "eslint": "eslint --ext .js src/ test/",
-    "pretest": "npm run eslint && npm run htmlhint",
     "test": "jest",
     "start": "serve src/"
   },
