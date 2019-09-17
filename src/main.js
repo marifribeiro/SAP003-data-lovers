@@ -1,6 +1,8 @@
 const main = document.getElementById("main");
 const data = window.getData(RICKANDMORTY.results);
 const dropdownOrigin = document.getElementById("origin");
+const dropdownLocation = document.getElementById("location");
+const dropdownStatus = document.getElementById("status");
 
 const createCard = () => {
   const card = document.createElement("div");
@@ -42,24 +44,28 @@ const printCard = (arr, parentElement) => {
   });
 };
 
-const filterOrigin = arr => {
-  const originLocations = [];
+const filterRepeated = (arr, condition) => {
+  const list = [];
   arr.map(item => {
-    if (!originLocations.includes(item.origin)) {
-      originLocations.push(item.origin);
+    if (!list.includes(item[condition])) {
+      list.push(item[condition]);
     } else {
       return false;
     }
   });
-  return originLocations;
+  return list.sort();
 };
 
-const createOriginList = (parentElement) => {
-  const option = document.createElement("option");
-  option.innerHTML = "worked!";
-  option.value = "worked";
-  parentElement.append(option);
+const createList = (arr, parentElement) => {
+  arr.map(origin => {
+    const option = document.createElement("option");
+    option.innerHTML = origin;
+    option.value = origin;
+    parentElement.append(option);
+  });
 };
 
 printCard(data, main);
-console.log(filterOrigin(data));
+createList(filterRepeated(data, "origin"), dropdownOrigin);
+createList(filterRepeated(data, "location"), dropdownLocation);
+createList(filterRepeated(data, "status"), dropdownStatus);
