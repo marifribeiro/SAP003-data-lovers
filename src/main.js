@@ -76,6 +76,7 @@ dropdownStatus.addEventListener("change", function() {
   printCard(window.filter(data, "status", dropdownStatus.value), main);
   dropdownOrigin.value = "default";
   dropdownLocation.value = "default";
+  //dropdownStatus.clientWidth > 100 ? dropdownStatus.style.cssText = `width: ${dropdownStatus.clientWidth}` : false;
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH <span>STATUS ${dropdownStatus.value.toUpperCase()}</span>`;
 });
 
@@ -83,6 +84,9 @@ dropdownOrigin.addEventListener("change", function() {
   printCard(window.filter(data, "origin", dropdownOrigin.value), main);
   dropdownStatus.value = "default";
   dropdownLocation.value = "default";
+  if (dropdownOrigin.clientWidth > 100) {
+    dropdownOrigin.style.cssText = "width: auto";
+  }
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>ORIGIN</span> IS <span>${dropdownOrigin.value.toUpperCase()}</span>`;
 });
 

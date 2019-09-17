@@ -21,18 +21,21 @@ html,body{
     color: #e9ffd4;
     text-decoration: none;
     margin-left: 60px;
-    margin-right: 20px;
+    margin-right: 30px;
+    width: 80px;
+    box-sizing: border-box;
 }
 
 .navbar-links select {
     color: #e9ffd4;
     background-color: #69735f;
     border: none;
-    margin: 19.5px 0 17px 19.5px;
+    margin: 20px 0 17px 20px;
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
-    max-width: 100px;
+    width: 80px;
+    box-sizing: border-box;
 }
 
 .navbar-search {
