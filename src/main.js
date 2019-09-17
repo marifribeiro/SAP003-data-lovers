@@ -1,5 +1,6 @@
 const main = document.getElementById("main");
 const data = window.getData(window.RICKANDMORTY.results);
+const filterInfo = document.getElementById("filter");
 const dropdownOrigin = document.getElementById("origin");
 const dropdownLocation = document.getElementById("location");
 const dropdownStatus = document.getElementById("status");
@@ -13,7 +14,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = obj.image; //"img/summer.jpeg";
+  img.src = "img/summer.jpeg"; //obj.image;
   return img;
 };
 
@@ -66,25 +67,28 @@ const createList = (arr, parentElement) => {
   });
 };
 
-const filter = (arr, value, condition) =>{
-  return arr.filter(item => {
-    return item[value] === condition;
-  });
-};
-
 printCard(data, main);
 createList(filterRepeated(data, "origin"), dropdownOrigin);
 createList(filterRepeated(data, "location"), dropdownLocation);
 createList(filterRepeated(data, "status"), dropdownStatus);
 
 dropdownStatus.addEventListener("change", function() {
-  printCard(filter(data, "status", dropdownStatus.value), main);
+  printCard(window.filter(data, "status", dropdownStatus.value), main);
+  dropdownOrigin.value = "default";
+  dropdownLocation.value = "default";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH <span>STATUS ${dropdownStatus.value.toUpperCase()}</span>`;
 });
 
 dropdownOrigin.addEventListener("change", function() {
-  printCard(filter(data, "origin", dropdownOrigin.value), main);
+  printCard(window.filter(data, "origin", dropdownOrigin.value), main);
+  dropdownStatus.value = "default";
+  dropdownLocation.value = "default";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>ORIGIN</span> IS <span>${dropdownOrigin.value.toUpperCase()}</span>`;
 });
 
 dropdownLocation.addEventListener("change", function() {
-  printCard(filter(data, "location", dropdownLocation.value), main);
+  printCard(window.filter(data, "location", dropdownLocation.value), main);
+  dropdownOrigin.value = "default";
+  dropdownStatus.value = "default";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>LAST LOCATION</span> WAS <span>${dropdownLocation.value.toUpperCase()}</span>`;
 });

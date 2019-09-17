@@ -69,8 +69,21 @@ html,body{
     font-size: 70px;
     display: block;
     text-align: center;
-    margin: 60px 0 60px 0;
+    margin: 40px 0;
     text-shadow: 5px 5px #0df205;
+}
+
+.filter-info {
+    font-family: 'Lato', sans-serif;
+    color: #0d0d0d;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+.filter-info span {
+    color: #11aebf;
 }
 
 .card {
