@@ -1,5 +1,5 @@
 const main = document.getElementById("main");
-const data = window.getData(RICKANDMORTY.results);
+const data = window.getData(window.RICKANDMORTY.results);
 const dropdownOrigin = document.getElementById("origin");
 const dropdownLocation = document.getElementById("location");
 const dropdownStatus = document.getElementById("status");
@@ -13,7 +13,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = "img/summer.jpeg"; //obj.image; 
+  img.src = obj.image; //"img/summer.jpeg";
   return img;
 };
 
@@ -77,14 +77,14 @@ createList(filterRepeated(data, "origin"), dropdownOrigin);
 createList(filterRepeated(data, "location"), dropdownLocation);
 createList(filterRepeated(data, "status"), dropdownStatus);
 
-dropdownStatus.addEventListener("change", function(){
-  printCard(filter(data, "status", dropdownStatus.value), main)
+dropdownStatus.addEventListener("change", function() {
+  printCard(filter(data, "status", dropdownStatus.value), main);
 });
 
-dropdownOrigin.addEventListener("change", function(){
-  printCard(filter(data, "origin", dropdownOrigin.value), main)
+dropdownOrigin.addEventListener("change", function() {
+  printCard(filter(data, "origin", dropdownOrigin.value), main);
 });
 
-dropdownLocation.addEventListener("change", function(){
-  printCard(filter(data, "location", dropdownLocation.value), main)
+dropdownLocation.addEventListener("change", function() {
+  printCard(filter(data, "location", dropdownLocation.value), main);
 });

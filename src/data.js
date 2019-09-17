@@ -13,3 +13,4 @@ const getData = (arr) => {
 };
 
 window.getData = getData;
+window.toInternal = toInternal;
