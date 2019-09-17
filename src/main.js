@@ -34,6 +34,7 @@ const createDetails = obj => {
 };
 
 const printCard = (arr, parentElement) => {
+  parentElement.innerHTML = "";
   return arr.map(item => {
     const card = createCard();
     card.append(createProfileImage(item));
@@ -65,7 +66,25 @@ const createList = (arr, parentElement) => {
   });
 };
 
+const filter = (arr, value, condition) =>{
+  return arr.filter(item => {
+    return item[value] === condition;
+  });
+};
+
 printCard(data, main);
 createList(filterRepeated(data, "origin"), dropdownOrigin);
 createList(filterRepeated(data, "location"), dropdownLocation);
 createList(filterRepeated(data, "status"), dropdownStatus);
+
+dropdownStatus.addEventListener("change", function(){
+  printCard(filter(data, "status", dropdownStatus.value), main)
+});
+
+dropdownOrigin.addEventListener("change", function(){
+  printCard(filter(data, "origin", dropdownOrigin.value), main)
+});
+
+dropdownLocation.addEventListener("change", function(){
+  printCard(filter(data, "location", dropdownLocation.value), main)
+});
