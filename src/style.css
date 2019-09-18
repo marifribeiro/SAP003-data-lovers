@@ -22,11 +22,11 @@ html,body{
     text-decoration: none;
     margin-left: 60px;
     margin-right: 30px;
-    width: 80px;
+    width: 85px;
     box-sizing: border-box;
 }
 
-.navbar-links select {
+.select-menu {
     color: #e9ffd4;
     background-color: #69735f;
     border: none;
@@ -34,7 +34,7 @@ html,body{
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
-    width: 80px;
+    width: 85px;
     box-sizing: border-box;
 }
 

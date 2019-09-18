@@ -1,9 +1,10 @@
 const main = document.getElementById("main");
-const data = window.getData(window.RICKANDMORTY.results);
 const filterInfo = document.getElementById("filter");
 const dropdownOrigin = document.getElementById("origin");
 const dropdownLocation = document.getElementById("location");
 const dropdownStatus = document.getElementById("status");
+const statistics = document.getElementById("statistics");
+const data = app.getData(window.RICKANDMORTY.results);
 
 const createCard = () => {
   const card = document.createElement("div");
@@ -14,7 +15,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = "img/summer.jpeg"; //obj.image;
+  img.src = obj.image; //"img/summer.jpeg";
   return img;
 };
 
@@ -58,7 +59,7 @@ const filterRepeated = (arr, condition) => {
   return list.sort();
 };
 
-const createList = (arr, parentElement) => {
+const createDropdownMenu = (arr, parentElement) => {
   arr.map(origin => {
     const option = document.createElement("option");
     option.innerHTML = origin;
@@ -67,32 +68,32 @@ const createList = (arr, parentElement) => {
   });
 };
 
-printCard(data, main);
-createList(filterRepeated(data, "origin"), dropdownOrigin);
-createList(filterRepeated(data, "location"), dropdownLocation);
-createList(filterRepeated(data, "status"), dropdownStatus);
+const dropdownEvent = (currentMenu, toSearch, toDefault1, toDefault2) => { //melhorar o nome dessa função
+  printCard(app.filter(data, toSearch, currentMenu.value), main);
+  toDefault1.value = "default";
+  toDefault2.value = "default";
+};
 
-dropdownStatus.addEventListener("change", function() {
-  printCard(window.filter(data, "status", dropdownStatus.value), main);
-  dropdownOrigin.value = "default";
-  dropdownLocation.value = "default";
-  //dropdownStatus.clientWidth > 100 ? dropdownStatus.style.cssText = `width: ${dropdownStatus.clientWidth}` : false;
-  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH <span>STATUS ${dropdownStatus.value.toUpperCase()}</span>`;
+const getStatistics = (arr, status, condition) => {
+  let filter = app.filter(arr, status, condition);
+  let percentage = (filter.length * 100) / 493;
+  return percentage;
+};
+
+printCard(data, main);
+createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
+createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
+createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
+
+dropdownStatus.addEventListener("change", function() {dropdownEvent(dropdownStatus, "status", dropdownLocation, dropdownOrigin);
+  filterInfo.innerHTML = `SHOWING ONLY <span>${dropdownStatus.value.toUpperCase()}</span> CHARACTERS</span>`;
+  statistics.innerHTML = `${getStatistics(data, "status", dropdownStatus.value)}% of the characters are${dropdownStatus.value}`
 });
 
-dropdownOrigin.addEventListener("change", function() {
-  printCard(window.filter(data, "origin", dropdownOrigin.value), main);
-  dropdownStatus.value = "default";
-  dropdownLocation.value = "default";
-  if (dropdownOrigin.clientWidth > 100) {
-    dropdownOrigin.style.cssText = "width: auto";
-  }
+dropdownOrigin.addEventListener("change", function() {dropdownEvent(dropdownOrigin, "origin", dropdownStatus, dropdownLocation);
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>ORIGIN</span> IS <span>${dropdownOrigin.value.toUpperCase()}</span>`;
 });
 
-dropdownLocation.addEventListener("change", function() {
-  printCard(window.filter(data, "location", dropdownLocation.value), main);
-  dropdownOrigin.value = "default";
-  dropdownStatus.value = "default";
+dropdownLocation.addEventListener("change", function() {dropdownEvent(dropdownLocation, "location", dropdownStatus, dropdownOrigin);
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>LAST LOCATION</span> WAS <span>${dropdownLocation.value.toUpperCase()}</span>`;
 });
