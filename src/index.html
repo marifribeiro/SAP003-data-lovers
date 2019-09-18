@@ -11,15 +11,17 @@
     <nav id="navbar" class="navbar">
       <span class="navbar-links navbar-font">
         <a href="index.html">Home</a>
-        <select id="status" class="navbar-font">
+        <select id="status" class="navbar-font select-menu">
           <option value="default" selected disabled>Status</option>
         </select>
-        <select id="origin" class="navbar-font">
+      
+        <select id="origin" class="navbar-font select-menu">
           <option value="default" selected disabled>Origin</option>
         </select>
-        <select id="location" class="navbar-font">
+      
+        <select id="location" class="navbar-font select-menu">
             <option value="default" selected disabled>Last location</option>
-          </select>
+        </select>
       </span>
       <span class="navbar-search navbar-font">
         <input type="text" placeholder="Search..." class="search-input navbar-font">
@@ -31,6 +33,7 @@
 
       <div id="title" class="title">THE RICK AND MORTY DATABASE</div>
       <div id="filter" class="filter-info"></div>
+      <div id="statistics" class="statistics"></div>
       <div id="main"></div>
 
     </div>

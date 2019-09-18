@@ -9,7 +9,7 @@ const toInternal = value => {
 };
 
 const getData = (arr) => {
-  return arr.map(toInternal);
+  return arr.map(obj => toInternal(obj));
 };
 
 const filter = (arr, value, condition) =>{
@@ -18,6 +18,12 @@ const filter = (arr, value, condition) =>{
   });
 };
 
-window.getData = getData;
-window.toInternal = toInternal;
-window.filter = filter;
+app = {
+  getData,
+  toInternal,
+  filter
+};
+
+// "htmlhint": "htmlhint src/*.html test/*.html",
+// "eslint": "eslint --ext .js src/ test/",
+// "pretest": "npm run eslint && npm run htmlhint",
