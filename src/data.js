@@ -30,7 +30,3 @@ app = {
   filter,
   getStatistics
 };
-
-// "htmlhint": "htmlhint src/*.html test/*.html",
-// "eslint": "eslint --ext .js src/ test/",
-// "pretest": "npm run eslint && npm run htmlhint",

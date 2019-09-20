@@ -18,14 +18,13 @@ describe("toInternal", () => {
       "location": {"name": "Earth (Replacement Dimension)"},
       "origin": {"name": "Earth (C-137)"}
     }))
-    .toEqual({
-      image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", 
-      name: "Rick Sanchez", 
-      status: "Alive", 
-      origin: "Earth (C-137)", 
-      location: "Earth (Replacement Dimension)"});
-    });
-
+      .toEqual({
+        image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", 
+        name: "Rick Sanchez", 
+        status: "Alive", 
+        origin: "Earth (C-137)", 
+        location: "Earth (Replacement Dimension)"});
+  });
 });
 
 describe("getData", () => {

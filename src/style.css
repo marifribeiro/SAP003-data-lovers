@@ -41,8 +41,10 @@ html,body{
 
 .navbar-links li {
     float: left;
-    width: 120px;
+    width: auto;
     text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .navbar-links li ul {
@@ -55,6 +57,10 @@ html,body{
     background-color: #69735f;
     color: #e9ffd4;
     list-style: none;
+    max-height: 315px;
+    width: 340px;
+    overflow: auto;
+    cursor: pointer;
 }
 
 .navbar-links a:hover {
@@ -65,7 +71,7 @@ html,body{
     float: none;
     border-bottom: solid 1px #e9ffd4;
     padding: 8px;
-    width: 120px;
+    width: auto;
 }
 
 .navbar-search {
