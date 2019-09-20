@@ -3,6 +3,9 @@ const filterInfo = document.getElementById("filter");
 const dropdownOrigin = document.getElementById("origin");
 const dropdownLocation = document.getElementById("location");
 const dropdownStatus = document.getElementById("status");
+const labelStatus = document.getElementById("label-status");
+const labelLocation = document.getElementById("label-location");
+const labelOrigin = document.getElementById("label-origin");
 const statistics = document.getElementById("statistics");
 const data = app.getData(window.RICKANDMORTY.results);
 
@@ -15,7 +18,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = obj.image; //"img/summer.jpeg";
+  img.src = "img/summer.jpeg"; //obj.image;
   return img;
 };
 
@@ -60,24 +63,11 @@ const filterRepeated = (arr, condition) => {
 };
 
 const createDropdownMenu = (arr, parentElement) => {
-  arr.map(origin => {
-    const option = document.createElement("option");
-    option.innerHTML = origin;
-    option.value = origin;
-    parentElement.append(option);
-  });
+  parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
 
-const dropdownEvent = (currentMenu, toSearch, toDefault1, toDefault2) => { //melhorar o nome dessa função
-  printCard(app.filter(data, toSearch, currentMenu.value), main);
-  toDefault1.value = "default";
-  toDefault2.value = "default";
-};
-
-const getStatistics = (arr, status, condition) => {
-  let filter = app.filter(arr, status, condition);
-  let percentage = (filter.length * 100) / 493;
-  return percentage;
+const dropdownEvent = (e, toSearch, toDefault1, toDefault2) => { //melhorar o nome dessa função
+  
 };
 
 printCard(data, main);
@@ -85,15 +75,32 @@ createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
 createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
 
-dropdownStatus.addEventListener("change", function() {dropdownEvent(dropdownStatus, "status", dropdownLocation, dropdownOrigin);
-  filterInfo.innerHTML = `SHOWING ONLY <span>${dropdownStatus.value.toUpperCase()}</span> CHARACTERS</span>`;
-  statistics.innerHTML = `${getStatistics(data, "status", dropdownStatus.value)}% of the characters are${dropdownStatus.value}`
+dropdownStatus.addEventListener("click", function(e) {
+  printCard(app.filter(data, "status", e.target.id), main);
+  labelStatus.innerHTML = e.target.id;
+  labelOrigin.style.cssText = "width: auto;";
+  labelOrigin.innerHTML = "Origin";
+  labelLocation.innerHTML = "Last location";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH STATUS <span>${e.target.id.toUpperCase()}</span>`;
+  statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", e.target.id))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
 });
 
-dropdownOrigin.addEventListener("change", function() {dropdownEvent(dropdownOrigin, "origin", dropdownStatus, dropdownLocation);
-  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>ORIGIN</span> IS <span>${dropdownOrigin.value.toUpperCase()}</span>`;
+dropdownOrigin.addEventListener("click", function(e) {
+  printCard(app.filter(data, "origin", e.target.id), main);
+  labelOrigin.innerHTML = e.target.id;
+  labelOrigin.style.cssText = "width: auto;";
+  labelStatus.innerHTML = "Status";
+  labelLocation.innerHTML = "Last location";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS FROM <span>${e.target.id.toUpperCase()}</span>`;
+  statistics.innerHTML = `${app.getStatistics(data, "origin", e.target.id).toFixed(2)}% of the characters are from ${e.target.id.toLowerCase()}`;
 });
 
-dropdownLocation.addEventListener("change", function() {dropdownEvent(dropdownLocation, "location", dropdownStatus, dropdownOrigin);
-  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>LAST LOCATION</span> WAS <span>${dropdownLocation.value.toUpperCase()}</span>`;
+dropdownLocation.addEventListener("click", function(e) {
+  printCard(app.filter(data, "location", e.target.id), main);
+  labelLocation.innerHTML = e.target.id;
+  labelOrigin.style.cssText = "width: auto;";
+  labelStatus.innerHTML = "Status";
+  labelOrigin.innerHTML = "Origin";
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS AT <span>${e.target.id.toUpperCase()}</span>`;
+  statistics.innerHTML = `${app.getStatistics(data, "location", e.target.id).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
 });

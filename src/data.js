@@ -18,12 +18,15 @@ const filter = (arr, value, condition) =>{
   });
 };
 
+const getStatistics = (arr, status, condition) => {
+  let filter = app.filter(arr, status, condition);
+  let percentage = (filter.length * 100) / 493;
+  return percentage;
+};
+
 app = {
   getData,
   toInternal,
-  filter
+  filter,
+  getStatistics
 };
-
-// "htmlhint": "htmlhint src/*.html test/*.html",
-// "eslint": "eslint --ext .js src/ test/",
-// "pretest": "npm run eslint && npm run htmlhint",
