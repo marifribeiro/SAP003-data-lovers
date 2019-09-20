@@ -8,15 +8,23 @@ describe("toInternal", () => {
     expect(typeof app.toInternal).toBe("function");
   });
 
-  test("should return ...", () => {
+  test("should return a smaller object", () => {
     expect(app.toInternal({
       "name": "Rick Sanchez",
       "status": "Alive",
       "type": "",
       "gender": "Male",
       "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    }).toEqual({image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", name: "Rick Sanchez", status: "Alive", origin: "Earth (C-137)", location: "Earth (Replacement Dimension)"}));
-  });
+      "location": {"name": "Earth (Replacement Dimension)"},
+      "origin": {"name": "Earth (C-137)"}
+    }))
+    .toEqual({
+      image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", 
+      name: "Rick Sanchez", 
+      status: "Alive", 
+      origin: "Earth (C-137)", 
+      location: "Earth (Replacement Dimension)"});
+    });
 
 });
 

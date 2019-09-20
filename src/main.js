@@ -15,7 +15,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = obj.image; //"img/summer.jpeg";
+  img.src = "img/summer.jpeg"; //obj.image;
   return img;
 };
 
@@ -61,10 +61,9 @@ const filterRepeated = (arr, condition) => {
 
 const createDropdownMenu = (arr, parentElement) => {
   arr.map(origin => {
-    const option = document.createElement("option");
-    option.innerHTML = origin;
-    option.value = origin;
-    parentElement.append(option);
+    const li = document.createElement("li");
+    li.innerHTML = origin;
+    parentElement.append(li);
   });
 };
 
@@ -74,26 +73,22 @@ const dropdownEvent = (currentMenu, toSearch, toDefault1, toDefault2) => { //mel
   toDefault2.value = "default";
 };
 
-const getStatistics = (arr, status, condition) => {
-  let filter = app.filter(arr, status, condition);
-  let percentage = (filter.length * 100) / 493;
-  return percentage;
-};
-
 printCard(data, main);
 createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
 createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
 
-dropdownStatus.addEventListener("change", function() {dropdownEvent(dropdownStatus, "status", dropdownLocation, dropdownOrigin);
+dropdownStatus.addEventListener("click", function() {dropdownEvent(dropdownStatus, "status", dropdownLocation, dropdownOrigin);
   filterInfo.innerHTML = `SHOWING ONLY <span>${dropdownStatus.value.toUpperCase()}</span> CHARACTERS</span>`;
-  statistics.innerHTML = `${getStatistics(data, "status", dropdownStatus.value)}% of the characters are${dropdownStatus.value}`
+  statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", dropdownStatus.value))}% of the characters ${dropdownStatus.value === "unknown" ? "have status unkown" : `are ${dropdownStatus.value.toLowerCase()}`}`;
 });
 
 dropdownOrigin.addEventListener("change", function() {dropdownEvent(dropdownOrigin, "origin", dropdownStatus, dropdownLocation);
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>ORIGIN</span> IS <span>${dropdownOrigin.value.toUpperCase()}</span>`;
+  statistics.innerHTML = `${app.getStatistics(data, "origin", dropdownOrigin.value).toFixed(1)}% of the characters are from ${dropdownOrigin.value.toLowerCase()}`
 });
 
 dropdownLocation.addEventListener("change", function() {dropdownEvent(dropdownLocation, "location", dropdownStatus, dropdownOrigin);
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WHOSE <span>LAST LOCATION</span> WAS <span>${dropdownLocation.value.toUpperCase()}</span>`;
+  statistics.innerHTML = `${app.getStatistics(data, "location", dropdownLocation.value).toFixed(1)}% of the characters are at ${dropdownLocation.value.toLowerCase()}`
 });

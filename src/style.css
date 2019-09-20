@@ -15,27 +15,57 @@ html,body{
 .navbar {
     background-color: #69735f;
     height: 55px;
+    width: 100%;
+}
+
+.navbar-links {
+    margin-top: 0;
+    padding: 0;
+    display: inline-block;
+    list-style: none;
 }
 
 .navbar-links a {
-    color: #e9ffd4;
+    padding: 18px;
+    display: block;
     text-decoration: none;
-    margin-left: 60px;
-    margin-right: 30px;
-    width: 85px;
-    box-sizing: border-box;
+    text-align: center;
+    background-color: #69735f;
+    color: #e9ffd4;
 }
 
-.select-menu {
-    color: #e9ffd4;
+.navbar-links ul {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    float: left;
+    width: 120px;
+    text-decoration: none;
+}
+
+.navbar-links li ul {
+    position: absolute;
+    visibility: hidden;
+}
+
+.navbar-links li:hover ul {
+    visibility: visible;
     background-color: #69735f;
-    border: none;
-    margin: 20px 0 17px 20px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    width: 85px;
-    box-sizing: border-box;
+    color: #e9ffd4;
+    list-style: none;
+}
+
+.navbar-links a:hover {
+    color: #a3b394;
+}
+
+.navbar-links ul li {
+    float: none;
+    border-bottom: solid 1px #e9ffd4;
+    padding: 8px;
+    width: 120px;
 }
 
 .navbar-search {
@@ -82,11 +112,19 @@ html,body{
     font-weight: bolder;
     text-align: center;
     font-size: 25px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .filter-info span {
     color: #11aebf;
+}
+
+.statistics {
+    font-family: 'Lato', sans-serif;
+    color: #0d0d0d;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .card {
