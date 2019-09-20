@@ -78,9 +78,10 @@ createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
 dropdownStatus.addEventListener("click", function(e) {
   printCard(app.filter(data, "status", e.target.id), main);
   labelStatus.innerHTML = e.target.id;
+  labelOrigin.style.cssText = "width: auto;";
   labelOrigin.innerHTML = "Origin";
   labelLocation.innerHTML = "Last location";
-  filterInfo.innerHTML = `SHOWING ONLY <span>${e.target.id.toUpperCase()}</span> CHARACTERS`;
+  filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH STATUS <span>${e.target.id.toUpperCase()}</span>`;
   statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", e.target.id))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
 });
 
@@ -97,6 +98,7 @@ dropdownOrigin.addEventListener("click", function(e) {
 dropdownLocation.addEventListener("click", function(e) {
   printCard(app.filter(data, "location", e.target.id), main);
   labelLocation.innerHTML = e.target.id;
+  labelOrigin.style.cssText = "width: auto;";
   labelStatus.innerHTML = "Status";
   labelOrigin.innerHTML = "Origin";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS AT <span>${e.target.id.toUpperCase()}</span>`;
