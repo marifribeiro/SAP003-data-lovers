@@ -1,14 +1,12 @@
 require("../src/data.js");
 
-const assert = require("assert");
-
 describe("toInternal", () => {
 
-  test("is a function", () => {
+  it("is a function", () => {
     expect(typeof app.toInternal).toBe("function");
   });
 
-  test("should return a smaller object", () => {
+  it("return a smaller object", () => {
     expect(app.toInternal({
       "name": "Rick Sanchez",
       "status": "Alive",
@@ -25,10 +23,70 @@ describe("toInternal", () => {
         origin: "Earth (C-137)", 
         location: "Earth (Replacement Dimension)"});
   });
+
+  it("return a object", () => {
+    expect(typeof app.toInternal({
+      "name": "Rick Sanchez",
+      "status": "Alive",
+      "type": "",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      "location": {"name": "Earth (Replacement Dimension)"},
+      "origin": {"name": "Earth (C-137)"}
+    }))
+      .toBe("object");
+  });
 });
 
 describe("getData", () => {
-  test("is a function", () => {
+
+  it("is a function", () => {
     expect(typeof app.getData).toBe("function");
+  });
+
+  it("return a array of objects", () => {
+    expect(app.getData([{
+      "name": "Rick Sanchez",
+      "status": "Alive",
+      "type": "",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      "location": {"name": "Earth (Replacement Dimension)"},
+      "origin": {"name": "Earth (C-137)"}}]
+    ))
+      .toEqual([{
+        image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", 
+        name: "Rick Sanchez", 
+        status: "Alive", 
+        origin: "Earth (C-137)", 
+        location: "Earth (Replacement Dimension)"}]);
+  });
+});
+
+describe("filter", () => {
+
+  it("is a function", () => {
+    expect(typeof app.filter).toBe("function");
+  });
+
+  it("return only characters with status alive", () => {
+    expect(app.filter([{"name": "Rick Sanchez", "status": "Alive"}, 
+      {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
+    ))
+      .toEqual([{name: "Rick Sanchez", status: "Alive"}]);
+  });
+});
+
+describe("getStatistics", () => {
+  
+  it("is a function", () => {
+    expect(typeof app.getStatistics).toBe("function");
+  });
+
+  it("return porcentage of the characters are alive", () => {
+    expect(app.getStatistics([{"name": "Rick Sanchez", "status": "Alive"}, 
+      {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
+    ))
+      .toEqual(50);
   });
 });
