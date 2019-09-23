@@ -7,7 +7,12 @@ const labelStatus = document.getElementById("label-status");
 const labelLocation = document.getElementById("label-location");
 const labelOrigin = document.getElementById("label-origin");
 const statistics = document.getElementById("statistics");
+const typedText = document.getElementById("typed-text");
+const btnSearch = document.getElementById("search-btn");
+const btnAlphabeticalOrder = document.getElementById("alphabetical-order");
 const data = app.getData(window.RICKANDMORTY.results);
+
+card.render(data.sort(randOrd), main);
 
 const filterRepeated = (arr, condition) => {
   const list = [];
@@ -25,13 +30,12 @@ const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
 
-card.render(data, main);
 createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
 createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
 
 dropdownStatus.addEventListener("click", function(e) {
-  card.render(app.filter(data, "status", e.target.id), main);
+  card.render(app.filter(data, "status", e.target.id).sort(randOrd), main);
   labelStatus.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelOrigin.innerHTML = "Origin";
@@ -41,7 +45,7 @@ dropdownStatus.addEventListener("click", function(e) {
 });
 
 dropdownOrigin.addEventListener("click", function(e) {
-  card.render(app.filter(data, "origin", e.target.id), main);
+  card.render(app.filter(data, "origin", e.target.id).sort(randOrd), main);
   labelOrigin.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelStatus.innerHTML = "Status";
@@ -51,11 +55,26 @@ dropdownOrigin.addEventListener("click", function(e) {
 });
 
 dropdownLocation.addEventListener("click", function(e) {
-  card.render(app.filter(data, "location", e.target.id), main);
+  card.render(app.filter(data, "location", e.target.id).sort(randOrd), main);
   labelLocation.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelStatus.innerHTML = "Status";
   labelOrigin.innerHTML = "Origin";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS AT <span>${e.target.id.toUpperCase()}</span>`;
   statistics.innerHTML = `${app.getStatistics(data, "location", e.target.id).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
+});
+
+btnSearch.addEventListener("click", function(e) {
+  card.render(app.searchName(data, typedText.value), main);
+  filterInfo.innerHTML = "";
+  statistics.innerHTML = "";
+  typedText.value = "";
+});
+
+function randOrd() {
+  return (Math.round(Math.random()));
+}
+
+btnAlphabeticalOrder.addEventListener("click", function(e) {
+  card.render(app.alphabeticalOrder(data), main);
 });
