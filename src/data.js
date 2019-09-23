@@ -20,7 +20,7 @@ const filter = (arr, value, condition) =>{
 
 const getStatistics = (arr, status, condition) => {
   let filter = app.filter(arr, status, condition);
-  let percentage = (filter.length * 100) / arr.length;
+  let percentage = (filter.length * 100) / 493;
   return percentage;
 };
 

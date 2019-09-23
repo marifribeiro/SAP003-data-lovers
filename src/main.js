@@ -8,6 +8,7 @@ const labelLocation = document.getElementById("label-location");
 const labelOrigin = document.getElementById("label-origin");
 const statistics = document.getElementById("statistics");
 const data = app.getData(window.RICKANDMORTY.results);
+const menuBtn = document.getElementById("menu-btn");
 
 const filterRepeated = (arr, condition) => {
   const list = [];
@@ -59,3 +60,13 @@ dropdownLocation.addEventListener("click", function(e) {
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS AT <span>${e.target.id.toUpperCase()}</span>`;
   statistics.innerHTML = `${app.getStatistics(data, "location", e.target.id).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
 });
+
+function openNav () {
+  if (navbar.className == "navbar") {
+    x.className += " menujs";
+    document.getElementById("menu-icon").innerHTML = "&#8594;";
+  } else {
+    x.className = "menu";
+    document.getElementById("menu-icon").innerHTML = "&#9776;";
+  }
+}

@@ -7,27 +7,27 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    
-    <nav id="navbar" class="navbar">
-        <ul class="navbar-links navbar-font">
-          <li><a href="index.html">Home</a></li>
-            <li><a id="label-status" href="#">Status</a>
-              <ul id="status"></ul>
-            </li>
-            <li><a id="label-origin" href="#">Origin</a>
-              <ul id="origin"></ul>
-            </li>
-            <li><a id="label-location" href="#">Last location</a>
-              <ul id="location"></ul>
-            </li>
-        </ul>
-      <span class="navbar-search navbar-font">
+    <nav id="navbar" class="navbar mobile-menu">
+      <ul class="navbar-links navbar-font">
+        <li class="menu"><a href="index.html">Home</a></li>
+          <li class="menu"><a id="label-status">Status</a>
+            <ul id="status"></ul>
+          </li>
+          <li class="menu"><a id="label-origin">Origin</a>
+            <ul id="origin"></ul>
+          </li>
+          <li class="menu"><a id="label-location">Last Location</a>
+            <ul id="location"></ul>
+          </li>
+          <li class="responsive" id="menu-btn">&#9776;</li>
+      </ul>
+      <!-- <span class="navbar-search navbar-font">
         <input type="text" placeholder="Search..." class="search-input navbar-font">
         <button class="search-btn navbar-font">Search</button>
-      </span>
+      </span> -->
     </nav>
 
-    <div id="root">
+    <div id="root" class="content">
 
       <div id="title" class="title">THE RICK AND MORTY DATABASE</div>
       <div id="filter" class="filter-info"></div>
