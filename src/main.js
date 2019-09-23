@@ -9,47 +9,6 @@ const labelOrigin = document.getElementById("label-origin");
 const statistics = document.getElementById("statistics");
 const data = app.getData(window.RICKANDMORTY.results);
 
-const createCard = () => {
-  const card = document.createElement("div");
-  card.setAttribute("class", "card");
-  return card;
-};
-
-const createProfileImage = obj => {
-  const img = document.createElement("img");
-  img.setAttribute("class", "card-img");
-  img.src = "img/summer.jpeg"; //obj.image;
-  return img;
-};
-
-const createName = obj => {
-  const name = document.createElement("div");
-  name.setAttribute("class", "card-name");
-  name.innerHTML = obj.name.toUpperCase();
-  return name;
-};
-
-const createDetails = obj => {
-  const ul = document.createElement("ul");
-  ul.setAttribute("class", "card-info");
-  ul.innerHTML += `<li><span>Status</span>${obj.status}</li>`;
-  ul.innerHTML += `<li><span>Origin</span>${obj.origin}</li>`;
-  ul.innerHTML += `<li><span>Location</span>${obj.location}</li>`;
-  return ul;
-};
-
-const printCard = (arr, parentElement) => {
-  parentElement.innerHTML = "";
-  return arr.map(item => {
-    const card = createCard();
-    card.append(createProfileImage(item));
-    card.append(createName(item));
-    card.append(createDetails(item));
-
-    parentElement.append(card);
-  });
-};
-
 const filterRepeated = (arr, condition) => {
   const list = [];
   arr.map(item => {
@@ -66,17 +25,13 @@ const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
 
-const dropdownEvent = (e, toSearch, toDefault1, toDefault2) => { //melhorar o nome dessa função
-  
-};
-
-printCard(data, main);
+card.render(data, main);
 createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
 createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
 
 dropdownStatus.addEventListener("click", function(e) {
-  printCard(app.filter(data, "status", e.target.id), main);
+  card.render(app.filter(data, "status", e.target.id), main);
   labelStatus.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelOrigin.innerHTML = "Origin";
@@ -86,7 +41,7 @@ dropdownStatus.addEventListener("click", function(e) {
 });
 
 dropdownOrigin.addEventListener("click", function(e) {
-  printCard(app.filter(data, "origin", e.target.id), main);
+  card.render(app.filter(data, "origin", e.target.id), main);
   labelOrigin.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelStatus.innerHTML = "Status";
@@ -96,7 +51,7 @@ dropdownOrigin.addEventListener("click", function(e) {
 });
 
 dropdownLocation.addEventListener("click", function(e) {
-  printCard(app.filter(data, "location", e.target.id), main);
+  card.render(app.filter(data, "location", e.target.id), main);
   labelLocation.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
   labelStatus.innerHTML = "Status";
