@@ -26,6 +26,16 @@ const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
 
+const openNav = () => {
+  if (navbar.className === "navbar") {
+    navbar.className += " mobile-menu";
+    document.getElementById("menu-btn").innerHTML = "&#x2190;";
+  } else {
+    navbar.className = "navbar";
+    document.getElementById("menu-btn").innerHTML = "&#9776;";
+  }
+}
+
 card.render(data, main);
 createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
@@ -61,12 +71,4 @@ dropdownLocation.addEventListener("click", function(e) {
   statistics.innerHTML = `${app.getStatistics(data, "location", e.target.id).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
 });
 
-function openNav () {
-  if (navbar.className == "navbar") {
-    x.className += " menujs";
-    document.getElementById("menu-icon").innerHTML = "&#8594;";
-  } else {
-    x.className = "menu";
-    document.getElementById("menu-icon").innerHTML = "&#9776;";
-  }
-}
+menuBtn.addEventListener("click", openNav);
