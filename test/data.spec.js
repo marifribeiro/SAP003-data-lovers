@@ -1,12 +1,11 @@
 require("../src/data.js");
 
 describe("toInternal", () => {
-
   it("is a function", () => {
     expect(typeof app.toInternal).toBe("function");
   });
 
-  it("return a smaller object", () => {
+  it("returns a smaller object", () => {
     expect(app.toInternal({
       "name": "Rick Sanchez",
       "status": "Alive",
@@ -39,12 +38,11 @@ describe("toInternal", () => {
 });
 
 describe("getData", () => {
-
   it("is a function", () => {
     expect(typeof app.getData).toBe("function");
   });
 
-  it("return a array of objects", () => {
+  it("returns a array of objects", () => {
     expect(app.getData([{
       "name": "Rick Sanchez",
       "status": "Alive",
@@ -64,12 +62,11 @@ describe("getData", () => {
 });
 
 describe("filter", () => {
-
   it("is a function", () => {
     expect(typeof app.filter).toBe("function");
   });
 
-  it("return only characters with status alive", () => {
+  it("returns only characters with status alive", () => {
     expect(app.filter([{"name": "Rick Sanchez", "status": "Alive"}, 
       {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
     ))
@@ -78,15 +75,40 @@ describe("filter", () => {
 });
 
 describe("getStatistics", () => {
-  
   it("is a function", () => {
     expect(typeof app.getStatistics).toBe("function");
   });
 
-  it("return porcentage of the characters are alive", () => {
+  it("returns porcentage of the characters are alive", () => {
     expect(app.getStatistics([{"name": "Rick Sanchez", "status": "Alive"}, 
       {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
+    )).toEqual(50);
+  });
+});
+
+describe("alphabeticalOrder", () => {
+  it("is a function", () => {
+    expect(typeof app.alphabeticalOrder).toBe("function");
+  });
+
+  it("returns characters in alphabetical order", () => {
+    expect(app.alphabeticalOrder([{name: "Rick Sanchez"}, {name: "Morty Smith"}, 
+      {name: "Albert Einstein"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}]
     ))
-      .toEqual(50);
+      .toEqual([{name: "Albert Einstein"}, {name: "Beth Smith"}, {name: "Morty Smith"},
+        {name: "Rick Sanchez"}, {name: "Rick Sanchez"}]);
+  });
+});
+
+describe("searchName", () => {
+  it("is a function", () => {
+    expect(typeof app.searchName).toBe("function");
+  });
+
+  it("returns characters with typed name", () => {
+    expect(app.searchName([{name: "Rick Sanchez"}, {name: "Morty Smith"}, 
+      {name: "Albert Einstein"}, {name: "Alien Rick"}], "rick"
+    ))
+      .toEqual([{name: "Rick Sanchez"}, {name: "Alien Rick"}]);
   });
 });
