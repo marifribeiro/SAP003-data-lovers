@@ -75,6 +75,7 @@ dropdownLocation.addEventListener("click", function(e) {
 });
 
 btnSearch.addEventListener("click", function(e) {
+  e.preventDefault();
   const searchInData = app.searchName(data, typedText.value);
   card.render(searchInData.sort(randOrd), main);
   filterInfo.innerHTML = "";
