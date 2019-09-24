@@ -75,14 +75,16 @@ dropdownLocation.addEventListener("click", function(e) {
 });
 
 btnSearch.addEventListener("click", function(e) {
-  card.render(app.searchName(data, typedText.value), main);
+  const searchInData = app.searchName(data, typedText.value);
+  card.render(searchInData.sort(randOrd), main);
   filterInfo.innerHTML = "";
   statistics.innerHTML = "";
   typedText.value = "";
+  checkbox(searchInData);
 });
 
 function randOrd() {
-  return (Math.round(Math.random()));
+  return (Math.round(Math.random())-0.5);
 }
 
 const checkbox = arr => {
