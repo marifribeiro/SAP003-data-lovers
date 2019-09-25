@@ -26,7 +26,7 @@ const openNav = () => {
   if (navbar.className === "navbar") {
     navbar.className += " mobile-menu";
     menuBtn.innerHTML = "&#x2190;";
-  } else {
+  } else {[{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}];
     navbar.className = "navbar";
     menuBtn.innerHTML = "&#9776;";
   }
