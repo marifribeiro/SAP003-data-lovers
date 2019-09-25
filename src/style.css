@@ -185,13 +185,16 @@ html,body {
     font-weight: bolder;
     font-size: 16px;
     line-height: 18px;
-    padding: 10px;
+    height: 56px;
+    width: 240px;
+    padding-top: 10px;
     color: #fff;
-    font-weight: bold;
     text-shadow: 2px 2px 2px #0d0d0d;
+    box-sizing: border-box;
 }
 
 .card-info {
+    margin: 0;
     color: #c6d9b4;
     list-style-type: none;
     font-family: 'Open Sans', sans-serif;
@@ -356,7 +359,7 @@ html,body {
         height: 1146px;
         margin: 0 15% 10% 15%;
         border-radius: 54px;
-        padding: 27px 27px 40px 27px;
+        padding: 27px;
     }
 
     .card-img {
@@ -366,10 +369,12 @@ html,body {
     .card-name{
         font-size: 45px;
         line-height: 45px;
-        padding: 47px;
+        padding-top: 27px;
         color: #fff;
         font-weight: bold;
         text-shadow: 8px 8px 8px #0d0d0d;
+        height: 130px;
+        width: auto;
     }
 
     .card-info {
