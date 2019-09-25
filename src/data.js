@@ -20,9 +20,20 @@ const filter = (arr, value, condition) =>{
 
 const getStatistics = (arr, status, condition) => {
   let filter = app.filter(arr, status, condition);
-  let percentage = (filter.length * 100) / arr.length;
+  let percentage = (filter.length * 100) / 493;
   return percentage;
 };
+
+const filterRepeated = (arr, condition) => {
+  const list = [];
+  arr.map(item => {
+    if (!list.includes(item[condition])) {
+      list.push(item[condition]);
+    } else {
+      return false;
+    }
+  });
+  return list.sort();
 
 const alphabeticalOrder = arr => {
   return arr.sort((a, b) => {
@@ -43,6 +54,7 @@ app = {
   toInternal,
   filter,
   getStatistics,
+  filterRepeated,
   alphabeticalOrder,
   searchName
 };
