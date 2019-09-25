@@ -18,18 +18,6 @@ const start = () => {
   checkbox(data);
 };
 
-const filterRepeated = (arr, condition) => {
-  const list = [];
-  arr.map(item => {
-    if (!list.includes(item[condition])) {
-      list.push(item[condition]);
-    } else {
-      return false;
-    }
-  });
-  return list.sort();
-};
-
 const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
@@ -44,7 +32,7 @@ const openNav = () => {
   }
 };
 
-const randOrd = () => return (Math.round(Math.random())-0.5);
+const randOrd = () => (Math.round(Math.random())-0.5);
 
 const checkbox = arr => {
   btnAlphabeticalOrder.checked = false;
@@ -105,6 +93,7 @@ dropdownLocation.addEventListener("click", function(e) {
 menuBtn.addEventListener("click", openNav);
 
 btnSearch.addEventListener("click", function(e) {
+  e.preventDefault();
   const searchInData = app.searchName(data, typedText.value);
   card.render(searchInData.sort(randOrd), main);
   filterInfo.innerHTML = "";
