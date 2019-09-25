@@ -169,7 +169,7 @@ html,body {
     text-align: center;
     font-family: 'Lato', sans-serif;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 18px;
     padding: 10px;
     color: #fff;
@@ -187,6 +187,14 @@ html,body {
     padding: 0;
 }
 
+.card-info span{
+    font-weight: bold;
+    text-align: left;
+    color: #fff;
+    float: left;
+    margin-right: 20px;
+}
+
 .card-info li {
     line-height: 20px;
 }
@@ -194,19 +202,11 @@ html,body {
 .card-border {
     padding-bottom: 5px;
     padding-top: 5px;
-    border-bottom: .5px groove #fff;
+    border-bottom: .5px groove #8a9481;
 }
 
 .card-bottom {
     padding-top: 5px;
-}
-
-.card-info span{
-    font-weight: bold;
-    text-align: left;
-    color: #fff;
-    float: left;
-    margin-right: 20px;
 }
 
 @media(max-width: 1000px) {
@@ -339,8 +339,8 @@ html,body {
     }
 
     .card-name{
-        font-size: 54px;
-        line-height: 18px;
+        font-size: 45px;
+        line-height: 45px;
         padding: 47px;
         color: #fff;
         font-weight: bold;
@@ -358,7 +358,6 @@ html,body {
     .card-border {
         padding-bottom: 5px;
         padding-top: 5px;
-        border-bottom: .5px groove #fff;
     }
     
     .card-bottom {

@@ -34,6 +34,7 @@ const filterRepeated = (arr, condition) => {
     }
   });
   return list.sort();
+};
 
 const alphabeticalOrder = arr => {
   return arr.sort((a, b) => {
