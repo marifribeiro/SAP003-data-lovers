@@ -90,11 +90,25 @@ html,body {
     margin: 11.5px 30px 11.5px 0px;
 }
 
+.checkbox {
+    padding: 17px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #0d0d0d;
+}
+
+.checkbox input{
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+}
+
 .search-input {
     color: #0d0d0d;
     border: none;
     border-bottom: 2px solid #0d0d0d;
-    width: 280px;
+    width: 200px;
     outline: none;
 }
 
@@ -195,9 +209,6 @@ html,body {
     margin-right: 20px;
 }
 
-.card-info li {
-    line-height: 20px;
-}
 
 .card-border {
     padding-bottom: 5px;
@@ -223,8 +234,8 @@ html,body {
     .navbar-links li.responsive {
         display: block;
         border: none;
-        margin-top: 10px;
         margin-left: 30px;
+        margin-bottom: 40px;
         display: block;
         font-family: 'Lato', sans-serif;
         font-size: 90px;
@@ -234,6 +245,7 @@ html,body {
         padding-left: 30px;
         padding-top: 30px;
         cursor: pointer;
+        transition: all .4s;
     }
 
     .navbar-font {
@@ -242,12 +254,14 @@ html,body {
 
     .mobile-menu {
         display: block;
+        transition: all .4s;
     }
 
     .mobile-menu ul {
         margin: 0;
         padding-left: 5%;
         padding-right: 5%;
+        transition: all .4s;
     }
 
     .mobile-menu ul li {
@@ -255,12 +269,14 @@ html,body {
         width: 100%;
         border-bottom: 1px solid #69735f;
         line-height: 80px;
+        transition: all .4s;
     }
 
     .mobile-menu ul li ul {
         max-height: 0;
         transition: all .4s;
         display: block;
+        transition: all .4s;
     }
 
     .mobile-menu ul li:hover ul{
@@ -272,6 +288,16 @@ html,body {
         overflow-x: hidden;
         text-align: center;
         max-height: 1060px;
+    }
+
+    .checkbox {
+        box-sizing: border-box;
+        width: 980px;
+    }
+
+    .checkbox input {
+        width: 44px;
+        height: 44px;
     }
 
     .mobile-menu a {
@@ -292,7 +318,6 @@ html,body {
 
     .search input[type=text] {
         width: 80%;
-        border-bottom: none;
         padding-bottom: 40px;
     }
 
@@ -331,7 +356,7 @@ html,body {
         height: 1146px;
         margin: 0 15% 10% 15%;
         border-radius: 54px;
-        padding: 27px;
+        padding: 27px 27px 40px 27px;
     }
 
     .card-img {
@@ -349,15 +374,6 @@ html,body {
 
     .card-info {
         font-size: 40px;
-    }
-    
-    .card-info li {
-        line-height: 64px;
-    }
-    
-    .card-border {
-        padding-bottom: 5px;
-        padding-top: 5px;
     }
     
     .card-bottom {

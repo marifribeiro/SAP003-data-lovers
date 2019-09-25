@@ -26,7 +26,7 @@ const openNav = () => {
   if (navbar.className === "navbar") {
     navbar.className += " mobile-menu";
     menuBtn.innerHTML = "&#x2190;";
-  } else {
+  } else {[{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}];
     navbar.className = "navbar";
     menuBtn.innerHTML = "&#9776;";
   }
@@ -39,8 +39,10 @@ const checkbox = arr => {
   btnAlphabeticalOrder.addEventListener("click", function(e) {
     if (btnAlphabeticalOrder.checked) {
       card.render(app.alphabeticalOrder(arr), main);
+      openNav();
     } else {
       card.render(arr.sort(randOrd), main);
+      openNav();
     };
   });
 };
@@ -60,7 +62,6 @@ dropdownStatus.addEventListener("click", function(e) {
   labelLocation.innerHTML = "Last location";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH STATUS <span>${e.target.id.toUpperCase()}</span>`;
   statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", e.target.id))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
-  
   checkbox(filterStatus);
 });
 
@@ -100,4 +101,5 @@ btnSearch.addEventListener("click", function(e) {
   statistics.innerHTML = "";
   typedText.value = "";
   checkbox(searchInData);
+  openNav();
 });

@@ -23,7 +23,7 @@ describe("toInternal", () => {
         location: "Earth (Replacement Dimension)"});
   });
 
-  it("return a object", () => {
+  it("returns an object", () => {
     expect(typeof app.toInternal({
       "name": "Rick Sanchez",
       "status": "Alive",
@@ -42,7 +42,7 @@ describe("getData", () => {
     expect(typeof app.getData).toBe("function");
   });
 
-  it("returns a array of objects", () => {
+  it("returns an array of smaller objects", () => {
     expect(app.getData([{
       "name": "Rick Sanchez",
       "status": "Alive",
@@ -79,10 +79,21 @@ describe("getStatistics", () => {
     expect(typeof app.getStatistics).toBe("function");
   });
 
-  it("returns porcentage of the characters are alive", () => {
+  it("returns porcentage of the alive characters", () => {
     expect(app.getStatistics([{"name": "Rick Sanchez", "status": "Alive"}, 
       {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
     )).toEqual(50);
+  });
+});
+
+describe("filterRepeated", () => {
+  it("is a function", () => {
+    expect(typeof app.filterRepeated).toBe("function");
+  });
+
+  it("remove repeated values from array of objects", () => {
+    expect(app.filterRepeated([{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}], "name"
+    )).toEqual(["Beth Smith", "Morty Smith", "Rick Sanchez"]);
   });
 });
 
