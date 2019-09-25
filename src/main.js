@@ -14,8 +14,7 @@ const data = app.getData(window.RICKANDMORTY.results);
 const menuBtn = document.getElementById("menu-btn");
 
 const start = () => {
-  card.render(data.sort(randOrd), main);
-  checkbox(data);
+  return initial(getEightCards());
 };
 
 const createDropdownMenu = (arr, parentElement) => {
@@ -103,3 +102,21 @@ btnSearch.addEventListener("click", function(e) {
   checkbox(searchInData);
   openNav();
 });
+
+function getRandom(max) {
+  return Math.floor(Math.random() * max + 1);
+}
+
+const getEightCards = () => {
+  const arr = [];
+  for (let i =0; i < 8; i++) {
+    const obj = data[getRandom(493)];
+    arr.push(obj);
+  };
+  return arr;
+};
+
+const initial = (arr) => {
+  checkbox(arr);
+  card.render(arr, main);
+};
