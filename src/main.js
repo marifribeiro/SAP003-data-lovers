@@ -11,32 +11,48 @@ const typedText = document.getElementById("typed-text");
 const btnSearch = document.getElementById("search-btn");
 const btnAlphabeticalOrder = document.getElementById("alphabetical-order");
 const data = app.getData(window.RICKANDMORTY.results);
+const menuBtn = document.getElementById("menu-btn");
 
 const start = () => {
   return initial(getEightCards());
-};
-
-const filterRepeated = (arr, condition) => {
-  const list = [];
-  arr.map(item => {
-    if (!list.includes(item[condition])) {
-      list.push(item[condition]);
-    } else {
-      return false;
-    }
-  });
-  return list.sort();
 };
 
 const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
 
-createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
-createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
-createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
+const openNav = () => {
+  if (navbar.className === "navbar") {
+    navbar.className += " mobile-menu";
+    menuBtn.innerHTML = "&#x2190;";
+  } else {[{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}];
+    navbar.className = "navbar";
+    menuBtn.innerHTML = "&#9776;";
+  }
+};
+
+const randOrd = () => (Math.round(Math.random())-0.5);
+
+const checkbox = arr => {
+  btnAlphabeticalOrder.checked = false;
+  btnAlphabeticalOrder.addEventListener("click", function(e) {
+    if (btnAlphabeticalOrder.checked) {
+      card.render(app.alphabeticalOrder(arr), main);
+      openNav();
+    } else {
+      card.render(arr.sort(randOrd), main);
+      openNav();
+    };
+  });
+};
+
+card.render(data, main);
+createDropdownMenu(app.filterRepeated(data, "origin"), dropdownOrigin);
+createDropdownMenu(app.filterRepeated(data, "location"), dropdownLocation);
+createDropdownMenu(app.filterRepeated(data, "status"), dropdownStatus);
 
 dropdownStatus.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   const filterStatus = app.filter(data, "status", e.target.id);
   card.render(filterStatus.sort(randOrd), main);
   labelStatus.innerHTML = e.target.id;
@@ -45,11 +61,11 @@ dropdownStatus.addEventListener("click", function(e) {
   labelLocation.innerHTML = "Last location";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH STATUS <span>${e.target.id.toUpperCase()}</span>`;
   statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", e.target.id))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
-  
   checkbox(filterStatus);
 });
 
 dropdownOrigin.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   const filterOrigin = app.filter(data, "origin", e.target.id);
   card.render(filterOrigin.sort(randOrd), main);
   labelOrigin.innerHTML = e.target.id;
@@ -62,6 +78,7 @@ dropdownOrigin.addEventListener("click", function(e) {
 });
 
 dropdownLocation.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   const filterLocation = app.filter(data, "location", e.target.id);
   card.render(filterLocation.sort(randOrd), main);
   labelLocation.innerHTML = e.target.id;
@@ -73,6 +90,8 @@ dropdownLocation.addEventListener("click", function(e) {
   checkbox(filterLocation);
 });
 
+menuBtn.addEventListener("click", openNav);
+
 btnSearch.addEventListener("click", function(e) {
   e.preventDefault();
   const searchInData = app.searchName(data, typedText.value);
@@ -81,26 +100,12 @@ btnSearch.addEventListener("click", function(e) {
   statistics.innerHTML = "";
   typedText.value = "";
   checkbox(searchInData);
+  openNav();
 });
-
-function randOrd() {
-  return (Math.round(Math.random())-0.5);
-}
 
 function getRandom(max) {
   return Math.floor(Math.random() * max + 1);
 }
-
-const checkbox = arr => {
-  btnAlphabeticalOrder.checked = false;
-  btnAlphabeticalOrder.addEventListener("click", function(e) {
-    if (btnAlphabeticalOrder.checked) {
-      card.render(app.alphabeticalOrder(arr), main);
-    } else {
-      card.render(arr.sort(randOrd), main);
-    };
-  });
-};
 
 const getEightCards = () => {
   const arr = [];

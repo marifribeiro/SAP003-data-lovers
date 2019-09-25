@@ -21,9 +21,9 @@ const createName = obj => {
 const createDetails = obj => {
   const ul = document.createElement("ul");
   ul.setAttribute("class", "card-info");
-  ul.innerHTML += `<li><span>Status</span>${obj.status}</li>`;
-  ul.innerHTML += `<li><span>Origin</span>${obj.origin}</li>`;
-  ul.innerHTML += `<li><span>Location</span>${obj.location}</li>`;
+  ul.innerHTML += `<li class="card-border"><span>Status</span>${obj.status}</li>`;
+  ul.innerHTML += `<li class="card-border"><span>Origin</span>${obj.origin}</li>`;
+  ul.innerHTML += `<li class="card-bottom"><span>Location</span>${obj.location}</li>`;
   return ul;
 };
 
