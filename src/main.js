@@ -10,18 +10,6 @@ const statistics = document.getElementById("statistics");
 const data = app.getData(window.RICKANDMORTY.results);
 const menuBtn = document.getElementById("menu-btn");
 
-const filterRepeated = (arr, condition) => {
-  const list = [];
-  arr.map(item => {
-    if (!list.includes(item[condition])) {
-      list.push(item[condition]);
-    } else {
-      return false;
-    }
-  });
-  return list.sort();
-};
-
 const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
@@ -29,19 +17,20 @@ const createDropdownMenu = (arr, parentElement) => {
 const openNav = () => {
   if (navbar.className === "navbar") {
     navbar.className += " mobile-menu";
-    document.getElementById("menu-btn").innerHTML = "&#x2190;";
+    menuBtn.innerHTML = "&#x2190;";
   } else {
     navbar.className = "navbar";
-    document.getElementById("menu-btn").innerHTML = "&#9776;";
+    menuBtn.innerHTML = "&#9776;";
   }
-}
+};
 
 card.render(data, main);
-createDropdownMenu(filterRepeated(data, "origin"), dropdownOrigin);
-createDropdownMenu(filterRepeated(data, "location"), dropdownLocation);
-createDropdownMenu(filterRepeated(data, "status"), dropdownStatus);
+createDropdownMenu(app.filterRepeated(data, "origin"), dropdownOrigin);
+createDropdownMenu(app.filterRepeated(data, "location"), dropdownLocation);
+createDropdownMenu(app.filterRepeated(data, "status"), dropdownStatus);
 
 dropdownStatus.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   card.render(app.filter(data, "status", e.target.id), main);
   labelStatus.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
@@ -52,6 +41,7 @@ dropdownStatus.addEventListener("click", function(e) {
 });
 
 dropdownOrigin.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   card.render(app.filter(data, "origin", e.target.id), main);
   labelOrigin.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";
@@ -62,6 +52,7 @@ dropdownOrigin.addEventListener("click", function(e) {
 });
 
 dropdownLocation.addEventListener("click", function(e) {
+  if (e.target && e.target.matches("li")) openNav();
   card.render(app.filter(data, "location", e.target.id), main);
   labelLocation.innerHTML = e.target.id;
   labelOrigin.style.cssText = "width: auto;";

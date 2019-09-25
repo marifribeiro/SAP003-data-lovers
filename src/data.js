@@ -24,9 +24,22 @@ const getStatistics = (arr, status, condition) => {
   return percentage;
 };
 
+const filterRepeated = (arr, condition) => {
+  const list = [];
+  arr.map(item => {
+    if (!list.includes(item[condition])) {
+      list.push(item[condition]);
+    } else {
+      return false;
+    }
+  });
+  return list.sort();
+};
+
 app = {
   getData,
   toInternal,
   filter,
-  getStatistics
+  getStatistics,
+  filterRepeated
 };
