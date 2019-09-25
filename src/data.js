@@ -34,6 +34,19 @@ const filterRepeated = (arr, condition) => {
     }
   });
   return list.sort();
+
+const alphabeticalOrder = arr => {
+  return arr.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+};
+
+const searchName = (arr, input) => {
+  return arr.filter(item => {
+    return item.name.toUpperCase().includes(input.toUpperCase());
+  });
 };
 
 app = {
@@ -41,5 +54,7 @@ app = {
   toInternal,
   filter,
   getStatistics,
-  filterRepeated
+  filterRepeated,
+  alphabeticalOrder,
+  searchName
 };
