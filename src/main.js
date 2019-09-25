@@ -13,8 +13,7 @@ const btnAlphabeticalOrder = document.getElementById("alphabetical-order");
 const data = app.getData(window.RICKANDMORTY.results);
 
 const start = () => {
-  card.render(data.sort(randOrd), main);
-  checkbox(data);
+  return initial(getEightCards());
 };
 
 const filterRepeated = (arr, condition) => {
@@ -88,6 +87,10 @@ function randOrd() {
   return (Math.round(Math.random())-0.5);
 }
 
+function getRandom(max) {
+  return Math.floor(Math.random() * max + 1);
+}
+
 const checkbox = arr => {
   btnAlphabeticalOrder.checked = false;
   btnAlphabeticalOrder.addEventListener("click", function(e) {
@@ -97,4 +100,18 @@ const checkbox = arr => {
       card.render(arr.sort(randOrd), main);
     };
   });
+};
+
+const getEightCards = () => {
+  const arr = [];
+  for (let i =0; i < 8; i++) {
+    const obj = data[getRandom(493)];
+    arr.push(obj);
+  };
+  return arr;
+};
+
+const initial = (arr) => {
+  checkbox(arr);
+  card.render(arr, main);
 };
