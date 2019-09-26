@@ -13,11 +13,6 @@ const btnAlphabeticalOrder = document.getElementById("alphabetical-order");
 const data = app.getData(window.RICKANDMORTY.results);
 const menuBtn = document.getElementById("menu-btn");
 
-const start = (e) => {
-  e.preventDefault;
-  return initial(getEightCards());
-};
-
 const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
@@ -26,13 +21,11 @@ const openNav = () => {
   if (navbar.className === "navbar") {
     navbar.className += " mobile-menu";
     menuBtn.innerHTML = "&#x2190;";
-  } else {[{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}];
+  } else {
     navbar.className = "navbar";
     menuBtn.innerHTML = "&#9776;";
   }
 };
-
-const randOrd = () => (Math.round(Math.random())-0.5);
 
 const checkbox = arr => {
   btnAlphabeticalOrder.checked = false;
@@ -47,11 +40,27 @@ const checkbox = arr => {
   });
 };
 
+const getEightCards = () => {
+  const arr = [];
+  for (let i =0; i < 8; i++) {
+    const obj = data[Math.floor(Math.random() * 493 + 1)];
+    arr.push(obj);
+  };
+  return arr;
+};
+
+const initial = (arr) => {
+  checkbox(arr);
+  card.render(arr, main);
+};
+
+const randOrd = () => Math.round(Math.random())-0.5;
+
 createDropdownMenu(app.removeDuplicates(data, "origin"), dropdownOrigin);
 createDropdownMenu(app.removeDuplicates(data, "location"), dropdownLocation);
 createDropdownMenu(app.removeDuplicates(data, "status"), dropdownStatus);
 
-document.addEventListener("DOMContentLoaded", start, false);
+document.addEventListener("DOMContentLoaded", () => initial(getEightCards()), false);
 
 dropdownStatus.addEventListener("click", function(e) {
   if (e.target && e.target.matches("li")) openNav();
@@ -104,21 +113,3 @@ btnSearch.addEventListener("click", function(e) {
   checkbox(searchInData);
   openNav();
 });
-
-const getRandom = max => {
-  return Math.floor(Math.random() * max + 1);
-};
-
-const getEightCards = () => {
-  const arr = [];
-  for (let i =0; i < 8; i++) {
-    const obj = data[getRandom(493)];
-    arr.push(obj);
-  };
-  return arr;
-};
-
-const initial = (arr) => {
-  checkbox(arr);
-  card.render(arr, main);
-};
