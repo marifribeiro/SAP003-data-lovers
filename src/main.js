@@ -17,6 +17,11 @@ const start = () => {
   return initial(getEightCards());
 };
 
+const initial = arr => {
+  checkbox(arr);
+  card.render(arr, main);
+};
+
 const createDropdownMenu = (arr, parentElement) => {
   parentElement.innerHTML += arr.map(value => `<li id="${value}">${value}</li>`).join("");
 };
@@ -32,10 +37,11 @@ const openNav = () => {
 };
 
 const randOrd = () => (Math.round(Math.random())-0.5);
+const getRandom = max => Math.floor(Math.random() * max + 1);
 
 const checkbox = arr => {
   btnAlphabeticalOrder.checked = false;
-  btnAlphabeticalOrder.addEventListener("click", function(e) {
+  btnAlphabeticalOrder.addEventListener("click", function() {
     if (btnAlphabeticalOrder.checked) {
       card.render(app.alphabeticalOrder(arr), main);
       openNav();
@@ -46,7 +52,16 @@ const checkbox = arr => {
   });
 };
 
-card.render(data, main);
+const getEightCards = () => {
+  const arr = [];
+  for (let i =0; i < 8; i++) {
+    const obj = data[getRandom(493)];
+    arr.push(obj);
+  };
+  return arr;
+};
+
+//card.render(data, main);
 createDropdownMenu(app.filterRepeated(data, "origin"), dropdownOrigin);
 createDropdownMenu(app.filterRepeated(data, "location"), dropdownLocation);
 createDropdownMenu(app.filterRepeated(data, "status"), dropdownStatus);
@@ -102,21 +117,3 @@ btnSearch.addEventListener("click", function(e) {
   checkbox(searchInData);
   openNav();
 });
-
-function getRandom(max) {
-  return Math.floor(Math.random() * max + 1);
-}
-
-const getEightCards = () => {
-  const arr = [];
-  for (let i =0; i < 8; i++) {
-    const obj = data[getRandom(493)];
-    arr.push(obj);
-  };
-  return arr;
-};
-
-const initial = (arr) => {
-  checkbox(arr);
-  card.render(arr, main);
-};
