@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => initial(getEightCards()), fa
 
 all.addEventListener("click", function(e) {
   initial(data);
+  filterInfo.innerHTML = "";
+  statistics.innerHTML = "";
   openNav();
 });
 
