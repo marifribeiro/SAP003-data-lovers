@@ -30,7 +30,7 @@ const openNav = () => {
 
 const checkbox = arr => {
   btnAlphabeticalOrder.checked = false;
-  btnAlphabeticalOrder.addEventListener("click", function(e) {
+  btnAlphabeticalOrder.addEventListener("click", function() {
     if (btnAlphabeticalOrder.checked) {
       card.render(app.alphabeticalOrder(arr), main);
       openNav();
