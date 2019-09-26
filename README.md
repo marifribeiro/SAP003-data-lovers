@@ -3,64 +3,69 @@
 ## Índice
 
 * [1. Introdução](#1-preâmbulo)
+* [2. Histórias de usuário](#2-Histórias-de-usuário)
+* [3. Desenho de interface do usuário](#3-Desenho-de-interface-do-usuário)
+* [4. Protótipo de baixa fidelidade](#4-Protótipo-de-baixa-fidelidade)
+* [5. Problemas detectados](#5-Problemas-detectados)
 
 ***
 
 ## 1. Introdução
 
-Bem vindo(a) ao nosso database de personagens da série Rick e Morty!
+Bem vindo(a) ao database de personagens da série **Rick e Morty**!
 
-A série trata das aventuras de Rick Sanchez, um cientista brilhante (com sérios problemasde alcoolismo) e seu sobrinho Morty Smith (não tão brilhante) através de galáxias e realidades paralelas onde encontram todos os tipos de personagens estranhos e, inclusive, outras versões de si mesmos.
-Após apenas 31 episódios de aventuras (até a entrega desse projeto) fica difícil acompanhar o destino de cada personagem - especialmente quando vários também se chamam Rick e Morty e acontecem inusitadas trocas de realidades!
+A série trata das aventuras de Rick Sanchez, um cientista brilhante (com sérios problemas de alcoolismo) e seu sobrinho Morty Smith (não tão brilhante) através de galáxias e realidades paralelas onde encontram todos os tipos de personagens estranhos e, inclusive, outras versões de si mesmos.
+Após apenas 31 episódios de aventuras (até a entrega desse projeto) foram introduzidos 493 personagens diferentes na série e, vamos ser sinceros, fica difícil acompanhar o destino de cada personagem - especialmente quando vários também se chamam Rick e Morty e acontecem inusitadas trocas de realidades!
 
-Com essa ideia em mente, criamos nosso banco de dados que usa informações fornecidas pela (Rick and Morty API)[https://rickandmortyapi.com/] para facilitar a busca de personagens da série, inclusive por localização atual e status como Vivo, Morto e indefinido.
+Com isso em mente, criamos um banco de dados que usa informações fornecidas pela (Rick and Morty API)[https://rickandmortyapi.com/] para facilitar a busca de personagens da série e obter informações dos mesmos através de cards e opções de busca.
 
-## 5. Critérios mínimos de aceitação do projeto
+## 2. Histórias de usuário
 
-Os critérios considerados para que tenha terminado este projeto são:
+A aplicação foi criada com base nas necessidades das próprias desenvolvedoras como fãs da série, além de uma breve pesquisa com outros fãs para descobrir algumas de suas necessidades.
+Identificamos que com tantos episódios onde são introduzidos dezenas de personagens (como TV intergalática e a Cidadela dos Ricks, por exempo) não é fácil saber o paradeiro de, até mesmo, alguns dos personagens principais. Nossa aplicação busca esclarecer essas dúvidas e permite ao usuário que identifique onde cada personagem está, se está vivo ou morto e de onde ele vem, quando as informações foram, de alguma forma, explicadas pela série.
 
-### Definição de produto
+Definimos as seguintes histórias de usuário para conclusão dessa aplicação:
 
-Documente brevemente seu trabalho no arquivo `README.md` de seu repositório,
-contando como foi o processo de desenho e como você acredita que o produto
-possa resolver o problema (ou problemas) de seu usuário.
+#### História 1 - Como usuário, eu quero ter visibilidade de todos os personagens da série
 
-### Histórias de usuário
+#### História 2 - Como usuário, eu gostaria de filtrar as informações principais dos personagens através de um link rápido ou um campo de busca
 
-Uma vez que entenda a necessidade dos usuários, escreva as [Historias de
-Usuario](https://es.wikipedia.org/wiki/Historias_de_usuario) que representem
-tudo que o usuário precisa fazer/ver. As **histórias de usuário** devem ser o
-resultado de seu processo de investigação/pesquisa de seus usuários.
+#### História 3 - Como usuário, eu gostaria de acessar o site do meu dispositivo móvel
 
-Não esqueça de incluir a definição de pronto (_definition of done_) e os
-critérios de aceitação para cada uma.
+#### História 4 - Como usuário, eu gostaria de receber uma estatística ao aplicar um filtro
 
-Na medida do possível, termine uma história de usuário antes de passar para a
-seguinte (cumpra com as definições de pronto + critérios de aceitação).
+## 3. Desenho de interface do usuário
 
-### Desenho de interface do usuário
+No primeiro rascunho da aplicação, optamos por exibir apenas as informações mais relevantes para acompanhamento da saga dos personagens ao longo da série. São as seguintes: 
+- Imagem
+- Nome
+- Status
+- Origem 
+- Localização atual
 
-#### Protótipo de baixa fidelidade
+O usuário poderia filtrar os cards pelas seguintes opções por menus dropdown:
+- Status (vivo, morto, indefinido)
+- Origem
+- Localização atual
 
-Durante seu trabalho você deverá fazer e iterar rascunhos de sua solução usando
-lápis e papel. Recomendamos que fotografe todas as iterações que fizer, suba
-para seu repositório e as mencione no `README.md`.
+Também incluímos um campo de busca para o usuário inserir qualquer informação disponível dos cards, e exibir os cards que possuiam parte da informação imputada.
 
-#### Testes de usabilidade
+### Por que cards?
+Optamos por exibir as informações em cards por 2 motivos:
 
-Durante o desafio você deverá fazer testes de usabilidade com usuários
-diferentes, e com base nos resultados desses testes, iterar seus desenhos de
-interface. Conte-nos quais problemas de usabilidade você detectou através dos
-testes e como os resolveu na proposta final.
+#### Alta quantidade de personagens
+Dessa forma podermos exibir as fotos e informações individualmente para facilitar a visualização do usuário, dado que alguns dos personagens podem parecer "novos" pois são exibidos por um curto período de tempo.
 
-## 9. Checklist
+#### Visualização das opções de filtro
+Quando uma opção de filtro é selecionada, ou um texto inserido no campo de busca, são exibidos apenas os cards que fazem parte daquela categoria, e dessa forma o usuário pode ter uma visão mais ampla sobre o filtro aplicado.
 
-* [ ] Inclui uma _definição de produto_ clara e informativa no `README.md`.
-* [ ] Inclui histórias de usuário no `README.md`.
-* [ ] Inclui rascunho da solução (protótipo de baixa fidelidade) no
-  `README.md`.
-* [ ] Inclui uma lista de problemas detectados nos testes de usabilidade no `README.md`.
-* [ ] UI: Mostra lista/tabela/etc com dados e/ou indicadores.
-* [ ] UI: Permite ordenar dados por um ou mais campos (asc e desc).
-* [ ] UI: Permite filtrar dados com base em uma condição.
-* [ ] UI: É _responsivo_.
+## 4. Protótipo de baixa fidelidade
+Você pode (ver aqui)[https://marvelapp.com/ce7e2d7/screen/61254595] o primeiro protótipo da aplicação, que segue o desenho de interface de usuário descrito acima.
+
+## 5. Problemas detectados
+
+Durante a etapa de testes de usabilidade, percebemos que a ordem dos cards aparecia de forma confusa e era uma necessidade do usuário de organiza-las de alguma forma, portanto adicionamos um checkbox no menu superior para ordenar os cards apresentados na tela por ordem alfabética dos nomes dos personagens.
+
+Inicialmente, pensamos em deixar disponível na tela inicial os cards de todos os 493 personagens. Identificamos, mais tarde, que era indesejável para o usuário que estivesse utilizando internet móvel ou de baixa velocidade carregar localmente todas essas informações, incluindo imagens. Portanto, atualmente, a tela inicial da aplicação carrega as imagens de 8 personagens aleatórios e há um botão que permite exibir todos os personagens, se assim o usuário desejar.
+
+Também percebemos que era desnecessário ter um menu de busca que fosse aberto para todas as informações disponíveis nos cards. É mais interessante para o usuário navegar pelos menus dropdown para analisar as opções de filtro, e fica faltando somente a busca pelo nome. Portanto o campo de busca filtra apenas as informações contidas no campo "nome" dos cards.
