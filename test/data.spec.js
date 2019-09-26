@@ -81,7 +81,8 @@ describe("getStatistics", () => {
 
   it("returns porcentage of the alive characters", () => {
     expect(app.getStatistics([{"name": "Rick Sanchez", "status": "Alive"}, 
-      {"name": "Albert Einstein", "status": "Dead"}], "status", "Alive"
+      {"name": "Albert Einstein", "status": "Dead"}], app.filter([{"name": "Rick Sanchez", "status": "Alive"}, 
+      {"name": "Albert Einstein", "status": "Dead"}], "status", "Dead")
     )).toEqual(50);
   });
 });
