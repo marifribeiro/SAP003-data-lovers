@@ -1,5 +1,6 @@
 const main = document.getElementById("main");
 const filterInfo = document.getElementById("filter");
+const all = document.getElementById("all");
 const dropdownOrigin = document.getElementById("origin");
 const dropdownLocation = document.getElementById("location");
 const dropdownStatus = document.getElementById("status");
@@ -51,7 +52,7 @@ const getEightCards = () => {
 
 const initial = (arr) => {
   checkbox(arr);
-  card.render(arr, main);
+  card.render(arr.sort(randOrd), main);
 };
 
 const randOrd = () => Math.round(Math.random())-0.5;
@@ -61,6 +62,11 @@ createDropdownMenu(app.removeDuplicates(data, "location"), dropdownLocation);
 createDropdownMenu(app.removeDuplicates(data, "status"), dropdownStatus);
 
 document.addEventListener("DOMContentLoaded", () => initial(getEightCards()), false);
+
+all.addEventListener("click", function(e) {
+  initial(data);
+  openNav();
+});
 
 dropdownStatus.addEventListener("click", function(e) {
   if (e.target && e.target.matches("li")) openNav();
