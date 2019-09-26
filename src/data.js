@@ -23,16 +23,10 @@ const getStatistics = (arr, func) => {
   return percentage;
 };
 
-const filterRepeated = (arr, condition) => {
-  const list = [];
-  arr.map(item => {
-    if (!list.includes(item[condition])) {
-      list.push(item[condition]);
-    } else {
-      return false;
-    }
-  });
-  return list.sort();
+const removeDuplicates = (arr, condition) => {
+  const set = new Set();
+  arr.map(item => set.add(item[condition]));
+  return Array.from(set).sort();
 };
 
 const alphabeticalOrder = arr => {
@@ -54,7 +48,7 @@ app = {
   toInternal,
   filter,
   getStatistics,
-  filterRepeated,
+  removeDuplicates,
   alphabeticalOrder,
   searchName
 };
