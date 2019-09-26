@@ -18,9 +18,8 @@ const filter = (arr, value, condition) =>{
   });
 };
 
-const getStatistics = (arr, status, condition) => {
-  let filter = app.filter(arr, status, condition);
-  let percentage = (filter.length * 100) / arr.length;
+const getStatistics = (arr, func) => {
+  let percentage = (func.length * 100) / arr.length;
   return percentage;
 };
 

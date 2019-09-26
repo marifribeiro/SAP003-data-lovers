@@ -44,7 +44,7 @@ const checkbox = arr => {
 const getEightCards = () => {
   const arr = [];
   for (let i =0; i < 8; i++) {
-    const obj = data[Math.floor(Math.random() * 493 + 1)];
+    const obj = data[Math.floor(Math.random() * 492 + 1)];
     arr.push(obj);
   };
   return arr;
@@ -77,7 +77,7 @@ dropdownStatus.addEventListener("click", function(e) {
   labelOrigin.innerHTML = "Origin";
   labelLocation.innerHTML = "Last location";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS WITH STATUS <span>${e.target.id.toUpperCase()}</span>`;
-  statistics.innerHTML = `${parseInt(app.getStatistics(data, "status", e.target.id))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
+  statistics.innerHTML = `${parseInt(app.getStatistics(data, filterStatus))}% of the characters ${e.target.id === "unknown" ? "have status unkown" : `are ${e.target.id.toLowerCase()}`}`;
   checkbox(filterStatus);
 });
 
@@ -90,7 +90,7 @@ dropdownOrigin.addEventListener("click", function(e) {
   labelStatus.innerHTML = "Status";
   labelLocation.innerHTML = "Last location";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS FROM <span>${e.target.id.toUpperCase()}</span>`;
-  statistics.innerHTML = `${app.getStatistics(data, "origin", e.target.id).toFixed(2)}% of the characters are from ${e.target.id.toLowerCase()}`;
+  statistics.innerHTML = `${app.getStatistics(data, filterOrigin).toFixed(2)}% of the characters are from ${e.target.id.toLowerCase()}`;
   checkbox(filterOrigin);
 });
 
@@ -103,7 +103,7 @@ dropdownLocation.addEventListener("click", function(e) {
   labelStatus.innerHTML = "Status";
   labelOrigin.innerHTML = "Origin";
   filterInfo.innerHTML = `SHOWING ONLY CHARACTERS AT <span>${e.target.id.toUpperCase()}</span>`;
-  statistics.innerHTML = `${app.getStatistics(data, "location", e.target.id).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
+  statistics.innerHTML = `${app.getStatistics(data, filterLocation).toFixed(2)}% of the characters are at ${e.target.id.toLowerCase()}`;
   checkbox(filterLocation);
 });
 
@@ -113,8 +113,8 @@ btnSearch.addEventListener("click", function(e) {
   e.preventDefault();
   const searchInData = app.searchName(data, typedText.value);
   card.render(searchInData.sort(randOrd), main);
+  statistics.innerHTML = `${app.getStatistics(data, searchInData).toFixed(2)}% of the characters have "${typedText.value.toLowerCase()}" in their name`;
   filterInfo.innerHTML = "";
-  statistics.innerHTML = "";
   typedText.value = "";
   checkbox(searchInData);
   openNav();
