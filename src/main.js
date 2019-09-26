@@ -13,7 +13,8 @@ const btnAlphabeticalOrder = document.getElementById("alphabetical-order");
 const data = app.getData(window.RICKANDMORTY.results);
 const menuBtn = document.getElementById("menu-btn");
 
-const start = () => {
+const start = (e) => {
+  e.preventDefault;
   return initial(getEightCards());
 };
 
@@ -46,10 +47,11 @@ const checkbox = arr => {
   });
 };
 
-card.render(data, main);
-createDropdownMenu(app.filterRepeated(data, "origin"), dropdownOrigin);
-createDropdownMenu(app.filterRepeated(data, "location"), dropdownLocation);
-createDropdownMenu(app.filterRepeated(data, "status"), dropdownStatus);
+createDropdownMenu(app.removeDuplicates(data, "origin"), dropdownOrigin);
+createDropdownMenu(app.removeDuplicates(data, "location"), dropdownLocation);
+createDropdownMenu(app.removeDuplicates(data, "status"), dropdownStatus);
+
+document.addEventListener("DOMContentLoaded", start, false);
 
 dropdownStatus.addEventListener("click", function(e) {
   if (e.target && e.target.matches("li")) openNav();
@@ -103,9 +105,9 @@ btnSearch.addEventListener("click", function(e) {
   openNav();
 });
 
-function getRandom(max) {
+const getRandom = max => {
   return Math.floor(Math.random() * max + 1);
-}
+};
 
 const getEightCards = () => {
   const arr = [];
