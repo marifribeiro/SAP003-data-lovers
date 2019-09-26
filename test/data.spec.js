@@ -86,13 +86,13 @@ describe("getStatistics", () => {
   });
 });
 
-describe("filterRepeated", () => {
+describe("removeDuplicates", () => {
   it("is a function", () => {
-    expect(typeof app.filterRepeated).toBe("function");
+    expect(typeof app.removeDuplicates).toBe("function");
   });
 
   it("remove repeated values from array of objects", () => {
-    expect(app.filterRepeated([{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}], "name"
+    expect(app.removeDuplicates([{name: "Rick Sanchez"}, {name: "Morty Smith"}, {name: "Beth Smith"}, {name: "Rick Sanchez"}, {name: "Morty Smith"}], "name"
     )).toEqual(["Beth Smith", "Morty Smith", "Rick Sanchez"]);
   });
 });

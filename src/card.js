@@ -7,7 +7,7 @@ const createCard = () => {
 const createProfileImage = obj => {
   const img = document.createElement("img");
   img.setAttribute("class", "card-img");
-  img.src = obj.image; //"img/summer.jpeg";
+  img.src = "img/summer.jpeg"; //obj.image;
   return img;
 };
 
