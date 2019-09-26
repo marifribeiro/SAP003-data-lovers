@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => initial(getEightCards()), fa
 
 all.addEventListener("click", function(e) {
   initial(data);
-  filterInfo.innerHTML = "";
+  filterInfo.innerHTML = "SHOWING ALL CHARACTERS";
   statistics.innerHTML = "";
   openNav();
 });
@@ -114,10 +114,16 @@ menuBtn.addEventListener("click", openNav);
 btnSearch.addEventListener("click", function(e) {
   e.preventDefault();
   const searchInData = app.searchName(data, typedText.value);
-  card.render(searchInData.sort(randOrd), main);
-  statistics.innerHTML = `${app.getStatistics(data, searchInData).toFixed(2)}% of the characters have "${typedText.value.toLowerCase()}" in their name`;
-  filterInfo.innerHTML = "";
-  typedText.value = "";
+  if (searchInData.length === 0 || typedText.value === "" || typedText.value === " ") {
+    filterInfo.innerHTML = "We didn't find any characters with this name :(";
+    main.innerHTML = "";
+    statistics.innerHTML = "";
+  } else {
+    card.render(searchInData.sort(randOrd), main);
+    statistics.innerHTML = `${app.getStatistics(data, searchInData).toFixed(2)}% of the characters have "${typedText.value.toLowerCase()}" in their name`;
+    filterInfo.innerHTML = "";
+  }
   checkbox(searchInData);
+  typedText.value = "";
   openNav();
 });
