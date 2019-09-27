@@ -345,11 +345,13 @@ html,body {
     }
 
     .filter-info {
+        font-size: 40px;
         padding-left: 40px;
         padding-right: 40px;
     }
 
     .statistics {
+        font-size: 40px;
         padding-left: 40px;
         padding-right: 40px;
     }

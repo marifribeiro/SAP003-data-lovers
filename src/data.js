@@ -13,14 +13,11 @@ const getData = (arr) => {
 };
 
 const filter = (arr, value, condition) =>{
-  return arr.filter(item => {
-    return item[value] === condition;
-  });
+  return arr.filter(item => item[value] === condition);
 };
 
 const getStatistics = (arr, func) => {
-  let percentage = (func.length * 100) / arr.length;
-  return percentage;
+  return (func.length * 100) / arr.length;
 };
 
 const removeDuplicates = (arr, condition) => {
