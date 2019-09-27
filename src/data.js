@@ -35,9 +35,7 @@ const alphabeticalOrder = arr => {
 };
 
 const searchName = (arr, input) => {
-  return arr.filter(item => {
-    return item.name.toUpperCase().includes(input.toUpperCase());
-  });
+  return arr.filter(item => item.name.toUpperCase().includes(input.toUpperCase()));
 };
 
 app = {

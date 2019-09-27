@@ -116,21 +116,23 @@ btnSearch.addEventListener("click", function(e) {
   labelOrigin.innerHTML = "Origin";
   labelLocation.innerHTML = "Last location";
   checkbox.checked = false;
-  list = searchInData;
 
   if (typedText.value === "" || typedText.value === " ") {
     filterInfo.innerHTML = "Whoops, I think I slipped on my keyboard, Morty.";
     typedText.value = "";
     statistics.innerHTML = "";
+    list = [];
   } else if (searchInData.length === 0) {
     filterInfo.innerHTML = "Who the fuck is that? I don't know anyone with that name, Morty.";
     typedText.value = "";
     statistics.innerHTML = "";
+    list = [];
   } else {
     card.render(searchInData.sort(randOrd), main);
     statistics.innerHTML = `${app.getStatistics(data, searchInData).toFixed(2)}% of the characters have "${typedText.value.toLowerCase()}" in their name`;
     filterInfo.innerHTML = "";
     typedText.value = "";
+    list = searchInData;
   }
 });
 
