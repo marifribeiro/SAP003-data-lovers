@@ -2,7 +2,7 @@
 
 ## Índice
 
-* [1. Introdução](#1-preâmbulo)
+* [1. Introdução](#1-introdução)
 * [2. Histórias de usuário](#2-Histórias-de-usuário)
 * [3. Desenho de interface do usuário](#3-Desenho-de-interface-do-usuário)
 * [4. Protótipo de baixa fidelidade](#4-Protótipo-de-baixa-fidelidade)
