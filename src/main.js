@@ -112,6 +112,9 @@ btnSearch.addEventListener("click", function(e) {
   openNav();
   const searchInData = app.searchName(data, typedText.value);
   main.innerHTML = "";
+  labelStatus.innerHTML = "Status";
+  labelOrigin.innerHTML = "Origin";
+  labelLocation.innerHTML = "Last location";
   checkbox.checked = false;
   list = searchInData;
 
@@ -120,13 +123,14 @@ btnSearch.addEventListener("click", function(e) {
     typedText.value = "";
     statistics.innerHTML = "";
   } else if (searchInData.length === 0) {
-    filterInfo.innerHTML = "Who the fuck is that? I don't know anyone with that name, Morty";
+    filterInfo.innerHTML = "Who the fuck is that? I don't know anyone with that name, Morty.";
     typedText.value = "";
     statistics.innerHTML = "";
   } else {
     card.render(searchInData.sort(randOrd), main);
     statistics.innerHTML = `${app.getStatistics(data, searchInData).toFixed(2)}% of the characters have "${typedText.value.toLowerCase()}" in their name`;
     filterInfo.innerHTML = "";
+    typedText.value = "";
   }
 });
 
