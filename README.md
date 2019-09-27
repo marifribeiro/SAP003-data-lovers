@@ -60,7 +60,7 @@ Dessa forma podermos exibir as fotos e informações individualmente para facili
 Quando uma opção de filtro é selecionada, ou um texto inserido no campo de busca, são exibidos apenas os cards que fazem parte daquela categoria, e dessa forma o usuário pode ter uma visão mais ampla sobre o filtro aplicado.
 
 ## 4. Protótipo de baixa fidelidade
-Você pode (ver aqui)[https://marvelapp.com/ce7e2d7/screen/61254595] o primeiro protótipo da aplicação, que segue o desenho de interface de usuário descrito acima.
+Você pode [ver aqui](https://marvelapp.com/ce7e2d7/screen/61254595) o primeiro protótipo da aplicação, que segue o desenho de interface de usuário descrito acima.
 
 ## 5. Problemas detectados
 
