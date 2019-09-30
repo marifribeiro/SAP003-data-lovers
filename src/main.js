@@ -38,7 +38,7 @@ const sortCards = arr => {
 
 const getEightCards = () => {
   const length = data.length - 1;
-  return Array.from({length: 8}).map(item => data[Math.floor(Math.random() * data.length + 1)]);
+  return Array.from({length: 8}).map(item => data[Math.floor(Math.random() * length + 1)]);
 };
 
 const initial = (arr) => {
